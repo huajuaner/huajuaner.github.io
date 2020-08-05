@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="dip pro2 writeup计算机专业17级3班sz170110330 张致远[toc] 预处理(001_4.bmp)空间域预处理分析    使用PDF方法，试图分析图像噪声类型，可以看到类型不是很明显，就没有做专门的滤波处理进行降噪。 调用了project1中实现的median_filter，Laplace 锐化，查看对分类效果影响。 形态学图像处理仅以图像开运算为例，因为在系统中尝试使用形">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HuaJuanerIO">
+<meta property="og:url" content="http://yoursite.com/not_ready/dip%20pro2%20writeup.html">
+<meta property="og:site_name" content="HuaJuanerIO">
+<meta property="og:description" content="dip pro2 writeup计算机专业17级3班sz170110330 张致远[toc] 预处理(001_4.bmp)空间域预处理分析    使用PDF方法，试图分析图像噪声类型，可以看到类型不是很明显，就没有做专门的滤波处理进行降噪。 调用了project1中实现的median_filter，Laplace 锐化，查看对分类效果影响。 形态学图像处理仅以图像开运算为例，因为在系统中尝试使用形">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200602134837588.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200607214652396.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200602135418760.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200603124514322.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200603160054139.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200607141204225.png">
+<meta property="og:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200607193149041.png">
+<meta property="article:published_time" content="2020-06-15T07:01:38.935Z">
+<meta property="article:modified_time" content="2020-06-07T14:02:10.000Z">
+<meta property="article:author" content="zzy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/13224/AppData/Roaming/Typora/typora-user-images/image-20200602134837588.png">
+
+<link rel="canonical" href="http://yoursite.com/not_ready/dip%20pro2%20writeup">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title> | HuaJuanerIO
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HuaJuanerIO</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">不图好玩学什么CS？</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">1</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="en">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="dip-pro2-writeup"><a href="#dip-pro2-writeup" class="headerlink" title="dip pro2 writeup"></a>dip pro2 writeup</h1><h2 id="计算机专业"><a href="#计算机专业" class="headerlink" title="计算机专业"></a>计算机专业</h2><h2 id="17级3班"><a href="#17级3班" class="headerlink" title="17级3班"></a>17级3班</h2><h2 id="sz170110330-张致远"><a href="#sz170110330-张致远" class="headerlink" title="sz170110330 张致远"></a>sz170110330 张致远</h2><p>[toc]</p>
+<h2 id="预处理-001-4-bmp"><a href="#预处理-001-4-bmp" class="headerlink" title="预处理(001_4.bmp)"></a>预处理(001_4.bmp)</h2><h3 id="空间域预处理分析"><a href="#空间域预处理分析" class="headerlink" title="空间域预处理分析"></a>空间域预处理分析</h3><img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200602134837588.png" alt="image-20200602134837588 " style="zoom:67%;" />
+
+
+
+<p>使用PDF方法，试图分析图像噪声类型，可以看到类型不是很明显，就没有做专门的滤波处理进行降噪。</p>
+<p>调用了project1中实现的median_filter，Laplace 锐化，查看对分类效果影响。</p>
+<h3 id="形态学图像处理"><a href="#形态学图像处理" class="headerlink" title="形态学图像处理"></a>形态学图像处理</h3><p>仅以图像开运算为例，因为在系统中尝试使用形态学方法进行降噪操作，对分类的效果较median_filter略差，所以不赘述。其实个人认为，对噪声的处理，从主观角度而言较median_filter效果更好。</p>
+<img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200607214652396.png" alt="image-20200607214652396" style="zoom:50%;" />
+
+<h3 id="频域预处理"><a href="#频域预处理" class="headerlink" title="频域预处理"></a>频域预处理</h3><img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200602135418760.png" alt="image-202006021354 18760" style="zoom:50%;" >
+
+<p>因为问题主要为分析掌纹走线，从而决定分类用户，并且分析数据集，色调，位置等对分类目标都影响较小，所以设置高通滤波器模块。</p>
+<img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200603124514322.png" alt="image-202006031245 14322" style="zoom:67%;" />
+
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h3 id="梯度直方图（HOG）"><a href="#梯度直方图（HOG）" class="headerlink" title="梯度直方图（HOG）"></a>梯度直方图（HOG）</h3><p>采用自己实现的hog模块，将原本大小为(150,150)的图片按照(10,10)的块进行像素分组，首先统计每个像素点的梯度幅值以及梯度方向，再按照图中方式，将一个10,10 的块映射成为一个 9,1的向量。因为对应于数据集，我不认为亮度因素会对分类结果造成坏的偏移，所以不再进行标准化操作。</p>
+<img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200603160054139.png" alt="image-20200603160054139" style="zoom:50%;" />
+
+<p>至此，就可以将一个150,150 的图片映射成为一个15,15,9,1的向量。</p>
+<p>尝试将hog中间步骤可视化，即按照梯度幅值的绝对值代表该像素的值，可以获得下图，认为较频域上高通滤波的效果好些。</p>
+<img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200607141204225.png" alt="image-20200607141204225" style="zoom:67%;" />
+
+<center> hog梯度幅值可视化</center>    
+
+<h2 id="Experiments-Results"><a href="#Experiments-Results" class="headerlink" title="Experiments+Results"></a>Experiments+Results</h2><h3 id="使用svc进行分类"><a href="#使用svc进行分类" class="headerlink" title="使用svc进行分类"></a>使用svc进行分类</h3><h4 id="experiment"><a href="#experiment" class="headerlink" title="experiment"></a>experiment</h4><p>利用训练集中图片经特征提取后形成的向量，训练sklearn.svc，通通使用默认参数。</p>
+<h4 id="results"><a href="#results" class="headerlink" title="results"></a>results</h4><p>未标准化的hog+默认参数的svm，score 78.33。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Myhog：pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果换用skimage.feature中的hog函数+默认参数的svm，score 81.67。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>使用中位数滤波器+skimage.feature.hog+sklearn.svc，score 85</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel size = <span class="number">3</span>*<span class="number">3</span></span><br><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="drawbacks"><a href="#drawbacks" class="headerlink" title="drawbacks"></a>drawbacks</h4><p>调用的hog方法会将一张图片映射到一个9408长的向量中，又兼svc方法的特性是在高维空间中将数据集划分开。所以会导致模型的泛化能力很差，只对训练集拟合效果很好。</p>
+<h4 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h4><p>中位数滤波器后再经过hog方法确实比直接使用hog方法有更好的表达能力，我想这是因为在该问题下，主干的线条纹理更起决定性作用。</p>
+<img src="C:\Users\13224\AppData\Roaming\Typora\typora-user-images\image-20200607193149041.png" alt="image-20200607193149041" style="zoom:67%;" />
+
+<center>median_filter+hog 可视化，可以明显发现较单独hog少了很多细节</center>
+
+<h3 id="直接使用特征向量之间的距离表征相似度"><a href="#直接使用特征向量之间的距离表征相似度" class="headerlink" title="直接使用特征向量之间的距离表征相似度"></a>直接使用特征向量之间的距离表征相似度</h3><h4 id="experiments"><a href="#experiments" class="headerlink" title="experiments"></a>experiments</h4><p>出于对hog特征提取方法的信任，我尝试使用一种更plain的方法来进行图片的分类。利用向量夹角度量相似性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cos_sim</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    a = np.mat(a)</span><br><span class="line">    b = np.mat(b)</span><br><span class="line">    num = float(a * b.T)</span><br><span class="line">    denom = np.linalg.norm(a) * np.linalg.norm(b)</span><br><span class="line">    cos = num / denom</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.5</span> + <span class="number">0.5</span> * cos</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="results-1"><a href="#results-1" class="headerlink" title="results"></a>results</h4><p>使用skimage.feature.hog, score 86.66667</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>使用中位数滤波器+skimage.feature.hog，score 90</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel size = <span class="number">3</span>*<span class="number">3</span></span><br><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>使用两次中位数滤波器+skimage.feature.hog score 88.333</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel size = <span class="number">3</span>*<span class="number">3</span></span><br><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>开操作+skimage.feature.hog score 86.67</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kernel = np.ones((<span class="number">3</span>, <span class="number">3</span>), np.uint8)</span><br><span class="line">img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations=<span class="number">2</span>)</span><br><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="conclusions"><a href="#conclusions" class="headerlink" title="conclusions"></a>conclusions</h4><p>与前文方法对比得知，svc方法在该问题下确实表现不好，原因也在前文分析过了。</p>
+<h3 id="final-solution-（score-90）"><a href="#final-solution-（score-90）" class="headerlink" title="final solution （score 90）"></a>final solution （score 90）</h3><p>使用中位数滤波器+skimage.feature.hog，score 90</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel size = <span class="number">3</span>*<span class="number">3</span></span><br><span class="line">skimage.feature.hog(img,orientations=<span class="number">12</span>,pixels_per_cell=(<span class="number">10</span>,<span class="number">10</span>),cells_per_block=(<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实际上，处理方法中牵扯到本学期dip课程中的不多，比如频域的降噪操作以及形态学的开操作用于降噪，效果都较我们所熟知的空间域卷积方法较差。</p>
+<p>同时，明显地，本次实验的数据集是极尽简单，数据干干净净，所以最后成型的系统这么简单就能达到90的正确率，感谢老师和助教的良苦用心，让我们尽可能多的保持了对这门课的兴趣。</p>
+<p>这门课教我们的主要集中于cv的方法论，而非最先进的处理技术，并且图像处理整个系统的方方面面都有涉及，受益良多，收获颇丰，开阔眼见，大快朵颐。</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dip-pro2-writeup"><span class="nav-number">1.</span> <span class="nav-text">dip pro2 writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机专业"><span class="nav-number">1.1.</span> <span class="nav-text">计算机专业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17级3班"><span class="nav-number">1.2.</span> <span class="nav-text">17级3班</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sz170110330-张致远"><span class="nav-number">1.3.</span> <span class="nav-text">sz170110330 张致远</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理-001-4-bmp"><span class="nav-number">1.4.</span> <span class="nav-text">预处理(001_4.bmp)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空间域预处理分析"><span class="nav-number">1.4.1.</span> <span class="nav-text">空间域预处理分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形态学图像处理"><span class="nav-number">1.4.2.</span> <span class="nav-text">形态学图像处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#频域预处理"><span class="nav-number">1.4.3.</span> <span class="nav-text">频域预处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征提取"><span class="nav-number">1.5.</span> <span class="nav-text">特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度直方图（HOG）"><span class="nav-number">1.5.1.</span> <span class="nav-text">梯度直方图（HOG）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-Results"><span class="nav-number">1.6.</span> <span class="nav-text">Experiments+Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用svc进行分类"><span class="nav-number">1.6.1.</span> <span class="nav-text">使用svc进行分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#experiment"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">experiment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#results"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawbacks"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">drawbacks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conclusion"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">conclusion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接使用特征向量之间的距离表征相似度"><span class="nav-number">1.6.2.</span> <span class="nav-text">直接使用特征向量之间的距离表征相似度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#experiments"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">experiments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#results-1"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conclusions"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">conclusions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-solution-（score-90）"><span class="nav-number">1.6.3.</span> <span class="nav-text">final solution （score 90）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zzy"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">zzy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:zzyhuajuan@gmail.com" title="E-Mail → mailto:zzyhuajuan@gmail.com" rel="noopener" target="_blank"><i class="zzyhuajuan fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
