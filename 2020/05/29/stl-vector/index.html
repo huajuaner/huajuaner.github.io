@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="stl-vector 源码阅读[toc] 类的构造函数用：对成员进行初始化123_Vector_alloc_base(const allocator_type&amp; __a): _M_data_allocator(__a), _M_start(0), _M_finish(0), _M_end_of_storage(0) &amp;#123;&amp;#125;  模板特化与偏特化12template &lt;">
+  <meta name="description" content="stl-vector 源码阅读类的构造函数用：对成员进行初始化123_Vector_alloc_base(const allocator_type&amp; __a): _M_data_allocator(__a), _M_start(0), _M_finish(0), _M_end_of_storage(0) &amp;#123;&amp;#125;  模板特化与偏特化12template &lt;class">
 <meta property="og:type" content="article">
 <meta property="og:title" content="stl-vector">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/stl-vector/index.html">
 <meta property="og:site_name" content="HuaJuanerIO">
-<meta property="og:description" content="stl-vector 源码阅读[toc] 类的构造函数用：对成员进行初始化123_Vector_alloc_base(const allocator_type&amp; __a): _M_data_allocator(__a), _M_start(0), _M_finish(0), _M_end_of_storage(0) &amp;#123;&amp;#125;  模板特化与偏特化12template &lt;">
+<meta property="og:description" content="stl-vector 源码阅读类的构造函数用：对成员进行初始化123_Vector_alloc_base(const allocator_type&amp; __a): _M_data_allocator(__a), _M_start(0), _M_finish(0), _M_end_of_storage(0) &amp;#123;&amp;#125;  模板特化与偏特化12template &lt;class">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-29T07:45:53.000Z">
-<meta property="article:modified_time" content="2020-09-20T07:06:44.365Z">
+<meta property="article:modified_time" content="2021-01-05T12:42:13.919Z">
 <meta property="article:author" content="zzy">
 <meta name="twitter:card" content="summary">
 
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-20 15:06:44" itemprop="dateModified" datetime="2020-09-20T15:06:44+08:00">2020-09-20</time>
+                <time title="Modified: 2021-01-05 20:42:13" itemprop="dateModified" datetime="2021-01-05T20:42:13+08:00">2021-01-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,8 +204,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="stl-vector-源码阅读"><a href="#stl-vector-源码阅读" class="headerlink" title="stl-vector 源码阅读"></a>stl-vector 源码阅读</h1><p>[toc]</p>
-<h2 id="类的构造函数用：对成员进行初始化"><a href="#类的构造函数用：对成员进行初始化" class="headerlink" title="类的构造函数用：对成员进行初始化"></a>类的构造函数用：对成员进行初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_Vector_alloc_base(<span class="keyword">const</span> allocator_type&amp; __a)</span><br><span class="line">: _M_data_allocator(__a), _M_start(<span class="number">0</span>), _M_finish(<span class="number">0</span>), _M_end_of_storage(<span class="number">0</span>)</span><br><span class="line"> &#123;&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="stl-vector-源码阅读"><a href="#stl-vector-源码阅读" class="headerlink" title="stl-vector 源码阅读"></a>stl-vector 源码阅读</h1><h2 id="类的构造函数用：对成员进行初始化"><a href="#类的构造函数用：对成员进行初始化" class="headerlink" title="类的构造函数用：对成员进行初始化"></a>类的构造函数用：对成员进行初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_Vector_alloc_base(<span class="keyword">const</span> allocator_type&amp; __a)</span><br><span class="line">: _M_data_allocator(__a), _M_start(<span class="number">0</span>), _M_finish(<span class="number">0</span>), _M_end_of_storage(<span class="number">0</span>)</span><br><span class="line"> &#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="模板特化与偏特化"><a href="#模板特化与偏特化" class="headerlink" title="模板特化与偏特化"></a>模板特化与偏特化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> _<span class="title">Tp</span>, <span class="title">class</span> _<span class="title">Allocator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> _<span class="title">Vector_alloc_base</span>&lt;_Tp, _Allocator, true&gt;</span></span><br></pre></td></tr></table></figure>
 
