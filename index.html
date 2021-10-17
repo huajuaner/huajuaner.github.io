@@ -5,17 +5,19 @@
   
 
   
-  <title>Hexo</title>
+  <title>ZZYhuajuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="Major in engineering...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZZYhuajuan">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="ZZYhuajuan">
+<meta property="og:description" content="Major in engineering...">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="zzy">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="ZZYhuajuan" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -36,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">ZZYhuajuan</a>
       </h1>
       
     </div>
@@ -64,9 +66,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-FreeRTOS-入门" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-FREERTOS" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/10/16/FreeRTOS-%E5%85%A5%E9%97%A8/" class="article-date">
+    <a href="/2021/10/16/FREERTOS/" class="article-date">
   <time datetime="2021-10-16T12:06:42.000Z" itemprop="datePublished">2021-10-16</time>
 </a>
     
@@ -78,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/16/FreeRTOS-%E5%85%A5%E9%97%A8/">FreeRTOS 入门</a>
+      <a class="article-title" href="/2021/10/16/FREERTOS/">FREERTOS</a>
     </h1>
   
 
@@ -87,10 +89,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a target="_blank" rel="noopener" href="https://www.freertos.org/features.html">https://www.freertos.org/features.html</a></p>
-<p>[toc]</p>
-<h2 id="tasks"><a href="#tasks" class="headerlink" title="tasks"></a>tasks</h2><h3 id="task-states"><a href="#task-states" class="headerlink" title="task states"></a>task states</h3><p><img src="FreeRTOS-%E5%85%A5%E9%97%A8.assets/image-20211016201918144.png" alt="image-20211016201918144"></p>
+<h2 id="tasks"><a href="#tasks" class="headerlink" title="tasks"></a>tasks</h2><h3 id="task-states"><a href="#task-states" class="headerlink" title="task states"></a>task states</h3><p><img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"></p>
 <h3 id="task-priorities"><a href="#task-priorities" class="headerlink" title="task priorities"></a>task priorities</h3><p>The idle task has priority zero.</p>
-<p><img src="FreeRTOS-%E5%85%A5%E9%97%A8.assets%5Cimage-20211016203150052.png" alt="image-20211016203150052"></p>
+<p><img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"></p>
 <h3 id="task-生命周期的API"><a href="#task-生命周期的API" class="headerlink" title="task 生命周期的API"></a>task 生命周期的API</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Tasks are created by calling <span class="title">xTaskCreate</span><span class="params">()</span> <span class="keyword">or</span> <span class="title">xTaskCreateStatic</span><span class="params">()</span>, <span class="keyword">and</span> deleted by calling <span class="title">vTaskDelete</span><span class="params">()</span>.</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="task-之间的通讯"><a href="#task-之间的通讯" class="headerlink" title="task 之间的通讯"></a>task 之间的通讯</h2><h3 id="queues"><a href="#queues" class="headerlink" title="queues"></a>queues</h3><ul>
@@ -101,14 +102,14 @@
 <li>对queue 的操作如果不合法，会导致当前的task blocked</li>
 </ul>
 <p><strong>Note that interrupts must NOT use API functions that do not end in “FromISR”.</strong></p>
-<h3 id="二进制信号量-Binary-Semaphores"><a href="#二进制信号量-Binary-Semaphores" class="headerlink" title="二进制信号量 Binary Semaphores"></a>二进制信号量 Binary Semaphores</h3><p><img src="FreeRTOS-%E5%85%A5%E9%97%A8.assets%5Cimage-20211016221448627.png" alt="image-20211016221448627"></p>
-<p><img src="FreeRTOS-%E5%85%A5%E9%97%A8.assets%5Cimage-20211016222640755.png" alt="image-20211016222640755"></p>
+<h3 id="二进制信号量-Binary-Semaphores"><a href="#二进制信号量-Binary-Semaphores" class="headerlink" title="二进制信号量 Binary Semaphores"></a>二进制信号量 Binary Semaphores</h3><p><img src="/2021/10/16/FREERTOS/image-20211016221448627.png" alt="image-20211016221448627"></p>
+<p><img src="/2021/10/16/FREERTOS/image-20211016222640755.png" alt="image-20211016222640755"></p>
 <p>不解</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/16/FreeRTOS-%E5%85%A5%E9%97%A8/" data-id="ckuuzkgmi0000wgs05sa5b61l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/16/FREERTOS/" data-id="ckuv38fsm0000bcs09g9wacr5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +150,7 @@
       <ul>
         
           <li>
-            <a href="/2021/10/16/FreeRTOS-%E5%85%A5%E9%97%A8/">FreeRTOS 入门</a>
+            <a href="/2021/10/16/FREERTOS/">FREERTOS</a>
           </li>
         
       </ul>
@@ -164,7 +165,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2021 John Doe<br>
+      &copy; 2021 zzy<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
