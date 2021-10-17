@@ -5,21 +5,26 @@
   
 
   
-  <title>FREERTOS | ZZYhuajuan</title>
+  <title>FREERTOS-Developer Docs | ZZYhuajuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="https:&#x2F;&#x2F;www.freertos.org&#x2F;features.html taskstask states task prioritiesThe idle task has priority zero.  task 生命周期的API1Tasks are created by calling xTaskCreate() or xTaskCreateStatic(), and deleted by">
+  <meta name="description" content="https:&#x2F;&#x2F;www.freertos.org&#x2F;features.html [toc] taskstask states task prioritiesThe idle task has priority zero.  task 生命周期的API1Tasks are created by calling xTaskCreate() or xTaskCreateStatic(), and dele">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FREERTOS">
+<meta property="og:title" content="FREERTOS-Developer Docs">
 <meta property="og:url" content="http://example.com/2021/10/16/FREERTOS/index.html">
 <meta property="og:site_name" content="ZZYhuajuan">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.freertos.org&#x2F;features.html taskstask states task prioritiesThe idle task has priority zero.  task 生命周期的API1Tasks are created by calling xTaskCreate() or xTaskCreateStatic(), and deleted by">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.freertos.org&#x2F;features.html [toc] taskstask states task prioritiesThe idle task has priority zero.  task 生命周期的API1Tasks are created by calling xTaskCreate() or xTaskCreateStatic(), and dele">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211016201918144.png">
 <meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211016203150052.png">
-<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211016221448627.png">
-<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211016222640755.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017201349607.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017201633431.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017201942607.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017205010532.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017205937043.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017210439565.png">
+<meta property="og:image" content="http://example.com/2021/10/16/FREERTOS/image-20211017210536191.png">
 <meta property="article:published_time" content="2021-10-16T12:06:42.000Z">
-<meta property="article:modified_time" content="2021-10-17T09:14:33.846Z">
+<meta property="article:modified_time" content="2021-10-17T13:55:40.537Z">
 <meta property="article:author" content="zzy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/10/16/FREERTOS/image-20211016201918144.png">
@@ -85,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      FREERTOS
+      FREERTOS-Developer Docs
     </h1>
   
 
@@ -94,6 +99,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a target="_blank" rel="noopener" href="https://www.freertos.org/features.html">https://www.freertos.org/features.html</a></p>
+<p>[toc]</p>
 <h2 id="tasks"><a href="#tasks" class="headerlink" title="tasks"></a>tasks</h2><h3 id="task-states"><a href="#task-states" class="headerlink" title="task states"></a>task states</h3><p><img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"></p>
 <h3 id="task-priorities"><a href="#task-priorities" class="headerlink" title="task priorities"></a>task priorities</h3><p>The idle task has priority zero.</p>
 <p><img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"></p>
@@ -106,10 +112,21 @@
 <li>在中断中使用的api不同于task中</li>
 <li>对queue 的操作如果不合法，会导致当前的task blocked</li>
 </ul>
-<p><strong>Note that interrupts must NOT use API functions that do not end in “FromISR”.</strong></p>
-<h3 id="二进制信号量-Binary-Semaphores"><a href="#二进制信号量-Binary-Semaphores" class="headerlink" title="二进制信号量 Binary Semaphores"></a>二进制信号量 Binary Semaphores</h3><p><img src="/2021/10/16/FREERTOS/image-20211016221448627.png" alt="image-20211016221448627"></p>
-<p><img src="/2021/10/16/FREERTOS/image-20211016222640755.png" alt="image-20211016222640755"></p>
-<p>不解</p>
+<p><u><strong>Note that interrupts must NOT use API functions that do not end in “FromISR”.</strong></u></p>
+<h3 id="Binary-Semaphores-VS-Counting-Semaphores-VS-Mutexes"><a href="#Binary-Semaphores-VS-Counting-Semaphores-VS-Mutexes" class="headerlink" title="Binary Semaphores  VS Counting Semaphores VS  Mutexes"></a>Binary Semaphores  VS Counting Semaphores VS  Mutexes</h3><p>counting semaphores 和 binary … 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
+<p>Mutexes are binary semaphores that include a priority inheritance mechanism.</p>
+<h4 id="what-is-the-inheritance-mechanism"><a href="#what-is-the-inheritance-mechanism" class="headerlink" title="what is the inheritance mechanism"></a>what is the inheritance mechanism</h4><p><img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"></p>
+<p><u><strong>mutex should not be used in an interrupt!!</strong></u></p>
+<p><img src="/2021/10/16/FREERTOS/image-20211017201633431.png" alt="image-20211017201633431"></p>
+<p><img src="/2021/10/16/FREERTOS/image-20211017201942607.png" alt="image-20211017201942607"></p>
+<h2 id="task-notification"><a href="#task-notification" class="headerlink" title="task notification"></a>task notification</h2><p><img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"></p>
+<p>较上述几个信号量使用起来更轻量化，没有从文档中读出原因，还有待编程进一步体验。</p>
+<h2 id="Stream-amp-Message-Buffers"><a href="#Stream-amp-Message-Buffers" class="headerlink" title="Stream &amp; Message Buffers"></a>Stream &amp; Message Buffers</h2><p><img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"></p>
+<p>只能由一个task 读，一个task写。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">If there are to be multiple different writers then the application writer must place each call to a writing API <span class="title">function</span> <span class="params">(such as xStreamBufferSend())</span> inside a critical section <span class="keyword">and</span> use a send block time of 0.</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/16/FREERTOS/image-20211017210439565.png" alt="image-20211017210439565"></p>
+<p><img src="/2021/10/16/FREERTOS/image-20211017210536191.png" alt="image-20211017210536191"></p>
 
       
     </div>
@@ -153,7 +170,7 @@
       <ul>
         
           <li>
-            <a href="/2021/10/16/FREERTOS/">FREERTOS</a>
+            <a href="/2021/10/16/FREERTOS/">FREERTOS-Developer Docs</a>
           </li>
         
       </ul>
