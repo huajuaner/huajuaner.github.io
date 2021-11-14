@@ -66,42 +66,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-矩阵分析review" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/11/12/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90review/" class="article-date">
-  <time datetime="2021-11-12T02:35:22.000Z" itemprop="datePublished">2021-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/12/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90review/">矩阵分析review</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/12/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90review/" data-id="ckvw6i79z0000m8s0eg0q2hfs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-POC-REview" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/11/11/POC-REview/" class="article-date">
@@ -124,39 +88,157 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Theory-of-Computation-ReView"><a href="#Theory-of-Computation-ReView" class="headerlink" title="Theory of Computation  ReView"></a>Theory of Computation  ReView</h1><p>[TOC]</p>
-<h2 id="Chapter-One-正则语言"><a href="#Chapter-One-正则语言" class="headerlink" title="Chapter One 正则语言"></a>Chapter One 正则语言</h2><p>Q: 为什么大多数计算模型是受限的</p>
-<h3 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h3><p>$Definition1.1:$<br>$$<br>M=(Q,\sum,\delta,q_0,F)\<br>Q是状态集，\sum是字母表，\delta:Q\times \sum \rightarrow Q ,q_0是起始状态, F \subseteq Q 是接受状态集<br>$$<br>特别的，$\delta$ 包含每一个状态与每一个字母对应的转化。</p>
-<h4 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h4><p>若A是机器M接受的全部字符串集，则称A是机器M的语言，记作L(M)=A,又称M识别A。一台机器可能接受若干字符串，但只会接受一个语言。</p>
-<h3 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h3><p>$Definition 1.7$ 如果一个语言被一台有穷自动机识别，则称它是正则语言(Regular Language).</p>
-<h4 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h4><p>设$M=(Q,\sum,\delta,q_0,F)$是一台有穷自动机，$w=w_1w_2w_3w_4…w_n$是一个字符串并且其中任意$w_i$是字母表的成员，若存在Q中的一个状态序列$r_0r_1r_2…r_n$满足下述条件：</p>
+        <h1><span id="theory-of-computation-review">Theory of Computation  ReView</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#chapter-one-%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80">Chapter One 正则语言</a><ul>
+<li><a href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA">有穷自动机</a><ul>
+<li><a href="#%E8%AF%AD%E8%A8%80">语言</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80">正则语言</a><ul>
+<li><a href="#%E8%AE%A1%E7%AE%97">计算</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%BF%90%E7%AE%97">正则运算</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E5%9E%8B%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA">非确定型有穷自动机</a><ul>
+<li><a href="#dfa%E4%B8%8Enfa%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7">DFA与NFA的等价性</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a><ul>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Enfa%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7%E4%BB%A5%E5%8F%8Anfa%E5%90%91%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96">正则表达式与NFA的等价性以及NFA向正则表达式的转化</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%9E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80">非正则语言</a></li>
+</ul>
+</li>
+<li><a href="#chapter-two-%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95">Chapter Two 上下文无关文法</a><ul>
+<li><a href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95">上下文无关文法</a><ul>
+<li><a href="#%E6%AD%A7%E4%B9%89%E6%80%A7">歧义性</a></li>
+<li><a href="#chomsky-normal-form">Chomsky Normal Form</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA">下推自动机</a><ul>
+<li><a href="#pda-%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B">PDA 的计算过程</a></li>
+<li><a href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7pda%E4%B8%8Ecfl%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7">非确定性PDA与CFL的等价性</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%9E%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E8%A8%80">非上下文无关语言</a></li>
+</ul>
+</li>
+<li><a href="#chapter-three-%E4%B8%98%E5%A5%87-%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98">Chapter Three 丘奇-图灵论题</a><ul>
+<li><a href="#%E6%A0%BC%E5%B1%80-configuration">格局 Configuration</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<p>[TOC]</p>
+<h2><span id="chapter-one-正则语言">Chapter One 正则语言</span></h2><p>Q: 为什么大多数计算模型是受限的</p>
+<h3><span id="有穷自动机">有穷自动机</span></h3><p>$Definition1.1:$<br>$$<br>\begin {aligned}<br>M=(Q,\sum,\delta,q_0,F)\<br>Q是状态集，\sum是字母表，\delta:Q\times \sum \rightarrow Q ,q_0是起始状态, F \subseteq Q 是接受状态集<br>\end {aligned}<br>$$<br>特别的，$\delta$ 包含每一个状态与每一个字母对应的转化。</p>
+<h4><span id="语言">语言</span></h4><p>若A是机器M接受的全部字符串集，则称A是机器M的语言，记作L(M)=A,又称M识别A。一台机器可能接受若干字符串，但只会接受一个语言。</p>
+<h3><span id="正则语言">正则语言</span></h3><p>$Definition 1.7$ 如果一个语言被一台有穷自动机识别，则称它是正则语言(Regular Language).</p>
+<h4><span id="计算">计算</span></h4><p>设$M=(Q,\sum,\delta,q_0,F)$是一台有穷自动机，$w=w_1w_2w_3w_4…w_n$是一个字符串并且其中任意$w_i$是字母表的成员，若存在Q中的一个状态序列$r_0r_1r_2…r_n$满足下述条件：</p>
 <ul>
 <li>$r_0=q_0$</li>
 <li>$\delta(r_i,w_{i+1})=r_{i+1},i=0,…,n-1$</li>
 <li>$r_n\in F$</li>
 </ul>
 <p>则称M接受w。</p>
-<h4 id="正则运算"><a href="#正则运算" class="headerlink" title="正则运算"></a>正则运算</h4><p>$Definition1.10$ 设$A$和$B$是两个语言，我们可以定义得到正则运算**并(union)<strong>，</strong>连接(concatenation)<strong>和</strong>星号(star)**。</p>
+<h4><span id="正则运算">正则运算</span></h4><p>$Definition1.10$ 设$A$和$B$是两个语言，我们可以定义得到正则运算**并(union)<strong>，</strong>连接(concatenation)<strong>和</strong>星号(star)**。</p>
 <p>需要注意，正则运算的定义对象是语言即自动机。进一步证明了正则语言类在正则运算下的完备性，通过连接运算部分证明的困难引出了非确定性。</p>
-<h3 id="非确定型有穷自动机"><a href="#非确定型有穷自动机" class="headerlink" title="非确定型有穷自动机"></a>非确定型有穷自动机</h3><p>$Definition 1.17$<br>$$<br>M=(Q,\Sigma,\delta,q_0,F)\<br>Q是状态集，\sum是字母表，\delta:Q\times \Sigma _\epsilon \rightarrow P(Q),q_0是起始状态, F \subseteq Q 是接受状态集<br>$$<br>引入非确定型有穷自动机后，我们可以轻易证明正则语言类在正则运算下的封闭性。</p>
-<h4 id="DFA与NFA的等价性"><a href="#DFA与NFA的等价性" class="headerlink" title="DFA与NFA的等价性"></a>DFA与NFA的等价性</h4><p>$Theorem 1.19$ 考虑基于NFA $M$ 构建一个新的DFA $M’$, $M’$的状态集$Q’ = P(Q)$，即可完成所有模拟。 相应的，我们构建出了$M’$。<br>$$<br>E(R) ={q|从R出发沿着0个或多个\epsilon 箭头可以到达q}\<br>Q’ = P(Q)\<br>q_0’=E({q_0})\<br>F’={R \in Q’|R包含Q的一个接受状态 }\<br>\delta ‘(R,a) = {q\in Q| \exists r\in R(q\in E(\delta(r,a))) }\<br>\Sigma ‘ =\Sigma<br>$$<br>$Inference 1.20$ 一个语言是正则的，当且仅当有一台非确定型有穷自动机识别他。</p>
-<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>$Inductive,Definition,1.26$ 称R是一个正则表达式，若R是：<br>$$<br>1.a,a\in \Sigma\<br>2.\epsilon\<br>3.\varnothing\<br>4.(R_1 \cup R_2 ),R_1,R_2 都是正则表达式\<br>5.(R_1\circ R_2),R_1, R_2 都是正则表达式\<br>6.(R_1)^\ast,R_1是正则表达式<br>$$</p>
-<h4 id="正则表达式与NFA的等价性以及NFA向正则表达式的转化"><a href="#正则表达式与NFA的等价性以及NFA向正则表达式的转化" class="headerlink" title="正则表达式与NFA的等价性以及NFA向正则表达式的转化"></a>正则表达式与NFA的等价性以及NFA向正则表达式的转化</h4><p>$Theorem, 1.28$ 一个语言是正则的，当且仅当可以用正则表达式描述它。</p>
+<h3><span id="非确定型有穷自动机">非确定型有穷自动机</span></h3><p>$Definition 1.17$<br>$$<br>\begin{aligned}<br>M=(Q,\Sigma,\delta,q_0,F)\<br>Q是状态集，\sum是字母表，\delta:Q\times \Sigma _\epsilon \rightarrow P(Q),q_0是起始状态, F \subseteq Q 是接受状态集<br>\end {aligned}<br>$$<br>引入非确定型有穷自动机后，我们可以轻易证明正则语言类在正则运算下的封闭性。</p>
+<h4><span id="dfa与nfa的等价性">DFA与NFA的等价性</span></h4><p>$Theorem 1.19$ 考虑基于NFA $M$ 构建一个新的DFA $M’$, $M’$的状态集$Q’ = P(Q)$，即可完成所有模拟。 相应的，我们构建出了$M’$。</p>
+<ul>
+<li>$E(R) ={q|从R出发沿着0个或多个\epsilon 箭头可以到达q}$</li>
+<li>$Q’ = P(Q) $</li>
+<li>$q_0’=E({q_0})$</li>
+<li>$F’={R \in Q’|R包含Q的一个接受状态 }$</li>
+<li>$\delta ‘(R,a) = {q\in Q| \exists r\in R(q\in E(\delta(r,a))) }$</li>
+<li>$\Sigma ‘ =\Sigma$</li>
+</ul>
+<p>$Inference 1.20$ 一个语言是正则的，当且仅当有一台非确定型有穷自动机识别他。</p>
+<h3><span id="正则表达式">正则表达式</span></h3><p>$Inductive,Definition,1.26$ 称R是一个正则表达式，若R是：</p>
+<ol>
+<li>$a,a\in \Sigma\$</li>
+<li>$\epsilon$</li>
+<li>$\varnothing$</li>
+<li>$(R_1 \cup R_2 ),R_1,R_2 都是正则表达式$</li>
+<li>$(R_1\circ R_2),R_1, R_2 都是正则表达式$</li>
+<li>$(R_1)^\ast,R_1是正则表达式$<h4><span id="正则表达式与nfa的等价性以及nfa向正则表达式的转化">正则表达式与NFA的等价性以及NFA向正则表达式的转化</span></h4></li>
+</ol>
+<p>$Theorem, 1.28$ 一个语言是正则的，当且仅当可以用正则表达式描述它。</p>
 <p>$Inference,1.29$ 如果一个语言可以用正则表达式描述，则它是正则的。</p>
 <p>该引理的证明是显然的，该引理的过程就是从正则表达式向NFA的转化。</p>
 <p>$Inference 1.30$ 如果一个语言是正则的，则可以用正则表达式描述它。</p>
 <p>该引理的过程就是从NFA向正则表达式转化的过程，详见Page:42。</p>
-<h3 id="非正则语言"><a href="#非正则语言" class="headerlink" title="非正则语言"></a>非正则语言</h3><p>$Theorem,1.37, Pumping,Theorm$ 若A是一个正则语言，则存在一个数p(泵长度)使得，如果s是A中任一长度不小于p的字符串，那么s可以被分成三段，s=xyz，满足下述条件：</p>
+<h3><span id="非正则语言">非正则语言</span></h3><p>$Theorem,1.37, Pumping,Theorm$ 若A是一个正则语言，则存在一个数p(泵长度)使得，如果s是A中任一长度不小于p的字符串，那么s可以被分成三段，s=xyz，满足下述条件：</p>
 <p>$1.对每一个i\ge 0,xy^iz \in A $</p>
 <p>$2.|y|&gt;0$</p>
 <p>$3.|xy|\le p$</p>
 <p>证明思路：其中p=自动机状态数，因为s长度不小于p，$s=r_0r_1..r_n$，若能计算，则计算历史为$q_0q_1…q_n$长度一定大于自动机状态数，根据$Pigeon holes’,Theorem$，一定至少$q_i=q_j$。 </p>
 <p>特别地，只能用泵引理证明语言不是正则的，若需证明语言是正则的，需找到相应的正则表达式。</p>
-<h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2>
+<h2><span id="chapter-two-上下文无关文法">Chapter Two 上下文无关文法</span></h2><h3><span id="上下文无关文法">上下文无关文法</span></h3><p>$ Definition 2.1$ 上下文无关文法是一个四元组$(V,\Sigma,R,S)$,且：</p>
+<ol>
+<li>$V$ 是一个有穷集合，称为变元集。</li>
+<li>$\Sigma$是一个与$V$不相交的又穷集合，称为终结符集。</li>
+<li>$R$是一个有穷规则集。</li>
+<li>$S\in V$是起始变元。</li>
+</ol>
+<h4><span id="歧义性">歧义性</span></h4><p>$Definition 2.4$ 如果字符串$w$在上下文无关文法$G$中有两个或两个以上的最左派生，则称G歧义地产生某个字符串，则称G是<strong>歧义</strong>的。</p>
+<p>某些上下文无关语言只能用歧义文法产生，称这样的语言为<strong>固有歧义</strong>的。 </p>
+<h4><span id="chomsky-normal-form">Chomsky Normal Form</span></h4><p>$ Definition 2.5$ 称一个上下文无关文法为Chomosky Normal Form，如果它的每一个规则具有如下形式:<br>$$<br>A \to BC\ A \to a<br>$$</p>
+<h3><span id="下推自动机">下推自动机</span></h3><p>$Definition 2.8$ 六元组$(Q,\Sigma,\Gamma,\delta,q_0,F)$，其中$Q,\Sigma ,\Gamma ,F$都是有穷集合。</p>
+<ol>
+<li>$Q$是状态集。</li>
+<li>$\Sigma$是输入字母表。</li>
+<li>$\Gamma$是栈字母表。</li>
+<li>$\delta :Q\times \Sigma_\epsilon \times \Gamma_\epsilon \to \mathcal P (Q\times \Gamma_\epsilon)$是非确定性的转移函数。</li>
+<li>$q_0 \in Q$是起始状态。</li>
+<li>$F \subseteq Q$是接受状态集。</li>
+</ol>
+<h4><span id="pda-的计算过程">PDA 的计算过程</span></h4><p>PDA接受输入$w=w_1w_2..w_p,w_i\in\Sigma_\epsilon$，若存在状态序列$r_0r_1..r_p,r_i\in Q$,和字符串序列$s_0,s_1,…s_p,s_i\in \Gamma ^\ast $，满足下述条件:</p>
+<ol>
+<li>$r_0 = q_0且s_0=\epsilon$，该条件表示$M$从起始状态和空栈开始。</li>
+<li>对于$i=0,1…p-1$有$(r_{i+1},b)\in \delta(r_i,w_{i+1},a)$其中$s_i=at,s_{i+1}=bt,a,b\in \Gamma_\epsilon,t\in \Gamma ^\ast $ </li>
+<li>$r_m\in F$，该条件说明在输入结束时出现一个接收状态。</li>
+</ol>
+<h4><span id="非确定性pda与cfl的等价性">非确定性PDA与CFL的等价性</span></h4><ol>
+<li>$Inference 2.13$ 如果一个语言是上下文无关的，则存在一个下推自动机识别它。</li>
+</ol>
+<p>$eg. S \to abSxy $，且S是起始变元，则对应产生的规则为$\delta (q,a,S)={(q_1,\epsilon)},\delta(q_1,b,\epsilon)={(q_2,\epsilon)},\delta(q_2,\epsilon,\epsilon)={(q_3,y)},\\delta(q_3,\epsilon,\epsilon)={(q_4,x)},\delta(q_4,\epsilon,\epsilon)={(q,S)}$  </p>
+<ol start="2">
+<li>$Inference 2.14$ 如果一个语言被一台下推自动机$M$所识别，则它能被CFG $L$派生。</li>
+</ol>
+<p>使用$A_{pq}$变元代表从$M$的p状态及空栈，转移到q状态以及空栈所派生的字符串。则：</p>
+<ul>
+<li>$A_{pq}\to aA_{rs}b,if,\delta(p,a,\epsilon)\to(r,u),\delta(s,b,u)\to(q,\epsilon)$</li>
+<li>$A_{pq}\to A_{pr}A_{rq}$</li>
+<li>$A_{pp}\to \epsilon$</li>
+</ul>
+<h3><span id="非上下文无关语言">非上下文无关语言</span></h3><p>$Definition 2.19$ $Pumping,lemma,for,CFL$</p>
+<p>如果$A$是上下文无关语言，则存在数p（pumping length），使得$A$中任何一个长度不小于p的字符串$s$都能被划分成5段$s=uvxyz$，使得：</p>
+<ol>
+<li>对每一个$i\ge 0,uv^ixy^iz\in A$</li>
+<li>$|vy|&gt;0$</li>
+<li>$|vxy|\le p$</li>
+</ol>
+<p>有一个显然的例子，$a^nb^nc^n \notin CFL$ 是因为使用泵引理进行分析，发现$v,y$都不能含有两种符号，不然会发生顺序错乱，但若仅含有一种符号，又不能保证三种字母的数量相同。</p>
+<h2><span id="chapter-three-丘奇-图灵论题">Chapter Three 丘奇-图灵论题</span></h2><p>$Definition 3.1$ 图灵机是一个7元组$(Q,\Sigma,\Gamma,\delta,q_0,q_{accept},q_{reject})$，其中$Q,\Sigma,\Gamma$都是有穷集合，且：</p>
+<ol>
+<li>$Q$是状态集。</li>
+<li>$\Sigma$是输入字母表，不包括特殊空白符号$\sqcup$</li>
+<li>$\Gamma$是带子字母表，其中$\sqcup \in \Gamma,\Sigma \subseteq \Gamma$</li>
+<li>$\delta: Q\times \Gamma \to Q \times \Gamma \times {L,R }$是转移函数</li>
+<li>$q_0 \in Q$ 是起始状态</li>
+<li>$q_{accept}\in Q$是接受状态</li>
+<li>$q_{reject}\in Q$是拒绝状态</li>
+</ol>
+<h3><span id="格局-configuration">格局 Configuration</span></h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/11/POC-REview/" data-id="ckvudi2ip00001ks0dfbz1w39" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/11/POC-REview/" data-id="ckvz73wu50001rcs0a125791d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/21/fundamentals-of-Control-Theory/" data-id="ckv0kqujb0000oks04mqnhz9b" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/21/fundamentals-of-Control-Theory/" data-id="ckvz73wu60002rcs0fttwbqty" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,7 +306,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="微型扑翼飞行器的原理"><a href="#微型扑翼飞行器的原理" class="headerlink" title="微型扑翼飞行器的原理"></a>微型扑翼飞行器的原理</h2><p>微型扑翼飞行器的原理类同于蜂鸟以及昆虫，不同于其他飞行器。其原理需要在非定常流动的低雷诺数环境中分析。</p>
+        <h2><span id="微型扑翼飞行器的原理">微型扑翼飞行器的原理</span></h2><p>微型扑翼飞行器的原理类同于蜂鸟以及昆虫，不同于其他飞行器。其原理需要在非定常流动的低雷诺数环境中分析。</p>
 <p>理论上或是计算上，目前都存在难度。同时，使用有限元分析软件Ansys Fluent也只能计算得到极为简化的结果（不能上控制策略，翅膀须建模为刚性翼）。</p>
 <blockquote>
 <p>但是由于扑翼流场强烈的非定常特性，要找出流场准确的解析解非常困难。人们开始寻求扑翼流场的近似解。人们用基于准定常（quasi-steady）假设的简化模型来近似分析扑翼的气动力[82,83]。在准定常模型里，扑翼的运动被按时间离散成一系列静止的姿态，在每一时刻，假定扑翼该时刻的瞬时气动力等于定常情况下相同姿态的静止机翼产生的气动力，最后把计算得到各时刻气动力按时间积分就认为是扑翼气动力的变化情况。这种把非定常的流场离散成一个个连续的定常流场来计算的方法没有考虑流场的非定常影响，而这恰恰是扑翼流场最重要的部分，绝对不能忽略。</p>
@@ -237,7 +319,7 @@
 </blockquote>
 <center>附录二  </center>
 
-<h2 id="固定翼，旋翼微型化的问题"><a href="#固定翼，旋翼微型化的问题" class="headerlink" title="固定翼，旋翼微型化的问题"></a>固定翼，旋翼微型化的问题</h2><p>固定翼以及旋翼在低雷诺数下都会显著恶化。</p>
+<h2><span id="固定翼旋翼微型化的问题">固定翼，旋翼微型化的问题</span></h2><p>固定翼以及旋翼在低雷诺数下都会显著恶化。</p>
 <blockquote>
 <p>微型固定翼飞行器由于主尺度较小， 飞行速度较低， 相应的雷诺数（ Reynolds number—Re）数范围大约在104～105 之间，进一步微型化后，Re 数可能会降到102 左右。低Re 数下，空气黏性效应显著，气动力出现一些与高Re 数下显著不同的特性。绕机翼流动边界层首先会出现层流分离，失稳后转变为湍流，再附于物面，形成一个层流分离泡（laminar separation bubble），使机翼气动特性变坏，出现阻力增大，升阻比下降，升力系数随攻角呈现非线性变化，有时升力、阻力和力矩都会产生“滞回”（hysteresis）现象。<br>对于低Re 数下流动特性的这种复杂变化，至今还没有完全认识清楚，例如翼剖面上长、短分离泡的形成过程。试验中发现有时长泡出现后，会跟随产生一个短泡，但有些条件下情况却恰恰相反。初步分析，这种现象的产生与来流速度、攻角、弦长和剖面厚度等参数有关，但其影响的大小和作用机理需要进一步的研究。</p>
 </blockquote>
@@ -246,7 +328,7 @@
 </blockquote>
 <center>附录三 仿生微型飞行器若干关键问题的研究 左德参 </center>
 
-<h2 id="开源的动态仿真环境"><a href="#开源的动态仿真环境" class="headerlink" title="开源的动态仿真环境"></a>开源的动态仿真环境</h2><p>Purdue 大学的Xinyan Deng组确实有类似的仿真工作, 并且我们的飞行器设计也是基本借鉴他们的工作。（附录四）</p>
+<h2><span id="开源的动态仿真环境">开源的动态仿真环境</span></h2><p>Purdue 大学的Xinyan Deng组确实有类似的仿真工作, 并且我们的飞行器设计也是基本借鉴他们的工作。（附录四）</p>
 <p><img src="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/image-20211018220349560.png" alt="image-20211018220349560"></p>
 <center> 计算升力使用叶素法，简化系统为刚性翼及准定常系统
 </center>
@@ -255,12 +337,12 @@
 <p><img src="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/image-20211018220713918.png" alt="image-20211018220713918"></p>
 <p><img src="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/image-20211018220721919.png" alt="image-20211018220721919"></p>
 <p><img src="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/image-20211018220750535.png" alt="image-20211018220750535"></p>
-<h3 id="cons"><a href="#cons" class="headerlink" title="cons"></a>cons</h3><p>该简化确实太强了，并且该文章发的层次并不高，引用量也多是自引，我有一定程度的质疑该工作。</p>
+<h3><span id="cons">cons</span></h3><p>该简化确实太强了，并且该文章发的层次并不高，引用量也多是自引，我有一定程度的质疑该工作。</p>
 <p>并且这里需要实物进行system identification，以进一步计算升力，及相关参数。</p>
 <blockquote>
 <p>Since the mass property of the robot is largely constant and can be easily measured, the system identification process focuses more on accurate force generation. We use an ATI Nano 17 sensor to measure the cycle-averaged force generated by the robot under different operating points. A total of 37 different inputs were used and 6 body force and torque were measured at each operating point. This force map with 222 data points will be used as the ground truth to measure the accurateness of the force generation of the simulation. The cost is defined as the squared error sum between the measured force and the force calculation from simulation across all data points. The parameters were optimized with 200 individuals for 200 generations. The result with the best<br>fit is shown in Fig. 5. The simulated force map matches the measurement well, with minor errors under larger inputs. This could be caused by the nonlinearity of the spring at a large deviation angle. The total error is 4.1%.</p>
 </blockquote>
-<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>基于此，我并不认为开发一个相应的仿真环境的优先级较高，且我们并不具有相适宜的能力去开发这样一个系统。</p>
+<h2><span id="conclusion">conclusion</span></h2><p>基于此，我并不认为开发一个相应的仿真环境的优先级较高，且我们并不具有相适宜的能力去开发这样一个系统。</p>
 <p>主要原因有:</p>
 <ul>
 <li>理论及计算仿真方法都存在原理上的巨大gap</li>
@@ -271,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/" data-id="ckv0kquje0001oks0h7x5ekcm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/" data-id="ckvz73wu70003rcs03lh6cb22" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,12 +387,12 @@
       
         <p><a target="_blank" rel="noopener" href="https://www.freertos.org/features.html">https://www.freertos.org/features.html</a></p>
 <p>[toc]</p>
-<h2 id="tasks"><a href="#tasks" class="headerlink" title="tasks"></a>tasks</h2><h3 id="task-states"><a href="#task-states" class="headerlink" title="task states"></a>task states</h3><p><img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"></p>
-<h3 id="task-priorities"><a href="#task-priorities" class="headerlink" title="task priorities"></a>task priorities</h3><p>The idle task has priority zero.</p>
+<h2><span id="tasks">tasks</span></h2><h3><span id="task-states">task states</span></h3><p><img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"></p>
+<h3><span id="task-priorities">task priorities</span></h3><p>The idle task has priority zero.</p>
 <p><img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"></p>
-<h3 id="task-生命周期的API"><a href="#task-生命周期的API" class="headerlink" title="task 生命周期的API"></a>task 生命周期的API</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Tasks are created by calling <span class="title">xTaskCreate</span><span class="params">()</span> <span class="keyword">or</span> <span class="title">xTaskCreateStatic</span><span class="params">()</span>, <span class="keyword">and</span> deleted by calling <span class="title">vTaskDelete</span><span class="params">()</span>.</span></span><br></pre></td></tr></table></figure>
+<h3><span id="task-生命周期的api">task 生命周期的API</span></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Tasks are created by calling <span class="title">xTaskCreate</span><span class="params">()</span> <span class="keyword">or</span> <span class="title">xTaskCreateStatic</span><span class="params">()</span>, <span class="keyword">and</span> deleted by calling <span class="title">vTaskDelete</span><span class="params">()</span>.</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="task-之间的通讯"><a href="#task-之间的通讯" class="headerlink" title="task 之间的通讯"></a>task 之间的通讯</h2><h3 id="queues"><a href="#queues" class="headerlink" title="queues"></a>queues</h3><ul>
+<h2><span id="task-之间的通讯">task 之间的通讯</span></h2><h3><span id="queues">queues</span></h3><ul>
 <li>传值</li>
 <li>通过传递指针同样可以实现传指针<strong>（多个tasks 共享一个内存空间）</strong></li>
 <li>由内核负责queue的存储空间分配</li>
@@ -318,15 +400,15 @@
 <li>对queue 的操作如果不合法，会导致当前的task blocked</li>
 </ul>
 <p><u><strong>Note that interrupts must NOT use API functions that do not end in “FromISR”.</strong></u></p>
-<h3 id="Binary-Semaphores-VS-Counting-Semaphores-VS-Mutexes"><a href="#Binary-Semaphores-VS-Counting-Semaphores-VS-Mutexes" class="headerlink" title="Binary Semaphores  VS Counting Semaphores VS  Mutexes"></a>Binary Semaphores  VS Counting Semaphores VS  Mutexes</h3><p>counting semaphores 和 binary … 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
+<h3><span id="binary-semaphores-vs-counting-semaphores-vs-mutexes">Binary Semaphores  VS Counting Semaphores VS  Mutexes</span></h3><p>counting semaphores 和 binary … 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
 <p>Mutexes are binary semaphores that include a priority inheritance mechanism.</p>
-<h4 id="what-is-the-inheritance-mechanism"><a href="#what-is-the-inheritance-mechanism" class="headerlink" title="what is the inheritance mechanism"></a>what is the inheritance mechanism</h4><p><img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"></p>
+<h4><span id="what-is-the-inheritance-mechanism">what is the inheritance mechanism</span></h4><p><img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"></p>
 <p><u><strong>mutex should not be used in an interrupt!!</strong></u></p>
 <p><img src="/2021/10/16/FREERTOS/image-20211017201633431.png" alt="image-20211017201633431"></p>
 <p><img src="/2021/10/16/FREERTOS/image-20211017201942607.png" alt="image-20211017201942607"></p>
-<h2 id="task-notification"><a href="#task-notification" class="headerlink" title="task notification"></a>task notification</h2><p><img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"></p>
+<h2><span id="task-notification">task notification</span></h2><p><img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"></p>
 <p>较上述几个信号量使用起来更轻量化，没有从文档中读出原因，还有待编程进一步体验。</p>
-<h2 id="Stream-amp-Message-Buffers"><a href="#Stream-amp-Message-Buffers" class="headerlink" title="Stream &amp; Message Buffers"></a>Stream &amp; Message Buffers</h2><p><img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"></p>
+<h2><span id="stream-amp-message-buffers">Stream &amp; Message Buffers</span></h2><p><img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"></p>
 <p>只能由一个task 读，一个task写。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">If there are to be multiple different writers then the application writer must place each call to a writing API <span class="title">function</span> <span class="params">(such as xStreamBufferSend())</span> inside a critical section <span class="keyword">and</span> use a send block time of 0.</span></span><br></pre></td></tr></table></figure>
 
@@ -336,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/16/FREERTOS/" data-id="ckuv38fsm0000bcs09g9wacr5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/16/FREERTOS/" data-id="ckvz73wu10000rcs07pqmdxcq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -375,10 +457,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2021/11/12/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90review/">矩阵分析review</a>
-          </li>
         
           <li>
             <a href="/2021/11/11/POC-REview/">TOC Review</a>
@@ -441,5 +519,20 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
