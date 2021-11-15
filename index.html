@@ -88,7 +88,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1><span id="theory-of-computation-review">Theory of Computation  ReView</span></h1><!-- toc -->
+        <h1><span id="theory-of-computation-review">Theory of Computation  ReView</span></h1><blockquote>
+<p>计算的要义就是在有限步内找到准确的解。</p>
+</blockquote>
+<!-- toc -->
 
 <ul>
 <li><a href="#chapter-one-%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80">Chapter One 正则语言</a><ul>
@@ -128,6 +131,28 @@
 </li>
 <li><a href="#chapter-three-%E4%B8%98%E5%A5%87-%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98">Chapter Three 丘奇-图灵论题</a><ul>
 <li><a href="#%E6%A0%BC%E5%B1%80-configuration">格局 Configuration</a></li>
+</ul>
+<ul>
+<li><a href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E5%9E%8B%E5%9B%BE%E7%81%B5%E6%9C%BA">非确定型图灵机</a><ul>
+<li><a href="#%E7%AD%89%E4%BB%B7%E6%80%A7">等价性</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89">算法的定义</a></li>
+</ul>
+</li>
+<li><a href="#chapter-four-%E5%8F%AF%E5%88%A4%E5%AE%9A%E6%80%A7">Chapter Four 可判定性</a><ul>
+<li><a href="#%E4%B8%8D%E5%8F%AF%E5%88%A4%E5%AE%9A%E6%80%A7">不可判定性</a><ul>
+<li><a href="#%E4%B8%8D%E5%8F%AF%E8%AF%86%E5%88%AB%E6%80%A7">不可识别性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-five-%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7">Chapter Five 可归约性</a><ul>
+<li><a href="#%E6%98%A0%E5%B0%84%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7">映射可归约性</a><ul>
+<li><a href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0">可计算函数</a></li>
+<li><a href="#%E6%98%A0%E5%B0%84%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7-1">映射可归约性</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -234,7 +259,36 @@
 <li>$q_{accept}\in Q$是接受状态</li>
 <li>$q_{reject}\in Q$是拒绝状态</li>
 </ol>
-<h3><span id="格局-configuration">格局 Configuration</span></h3>
+<h4><span id="格局-configuration">格局 Configuration</span></h4><p>显见，上文所定义的图灵机仅有三个自由度，分别是当前状态，当前带子内容和当前读写头位置。故此，这三者组合在一起称为图灵机的格局，对于状态$q$，和状态字母表$\Gamma$上的两个字符串$u和v$，以$uqv$代表如下格局：当前状态是q，当前带子内容是uv，读写头的当前位置是v的第一个符号。</p>
+<p>对于任意输入，图灵机有三种可能的表现：接受，拒绝及循环，其中我们认为拒绝和循环都是不接受。若某图灵机对所有字符串要么接受，要么拒绝（有限时间内给出结果）则称该图灵机为判定器。</p>
+<p>$Definition 3.2$如果一个语言能被某一图灵机识别，则称该语言是图灵可识别的(Turing-recognizable)。</p>
+<p>$Definition3.3$如果一个语言能被某一图灵机判定，则称该语言是图灵可判定的(Turing-decidable)。</p>
+<h3><span id="非确定型图灵机">非确定型图灵机</span></h3><h4><span id="等价性">等价性</span></h4><p>等价于确定型图灵机：我们可以使用一个确定性图灵机广度优先搜索的模拟一台非确定型图灵机。</p>
+<p>已经证明：任何可以无限制地访问无限的存储器，且在一步中只能执行有限的工作量的计算模型的能力都是等价的。</p>
+<h3><span id="算法的定义">算法的定义</span></h3><blockquote>
+<p>希尔伯特第10问题：通过有限多次运算决定一个多项式方程有没有整数根。</p>
+</blockquote>
+<p>$Formal Description:$ $D={p|p是有整数根的多项式 }$ 是否是图灵可判定的。</p>
+<p>$\to$  既然算法是用图灵机定义的，实则每个图灵机也对应一个被准确形式化描述的算法。</p>
+<h2><span id="chapter-four-可判定性">Chapter Four 可判定性</span></h2><h3><span id="不可判定性">不可判定性</span></h3><p>$Theorem 4.9$ $A_{TM}$是不可判定的。</p>
+<h4><span id="不可识别性">不可识别性</span></h4><p>$Inference 4.15$ 存在不能被任何图灵机识别的语言。</p>
+<p>图灵机的个数是可数的，因为构成其的$Q,\Sigma,\Gamma$都是有穷集合。但要识别的语言是不可数的，字符串个数为$|\Sigma^\ast|$不可数，对应产生的语言为$L={w|w=01串，且为无限长度}$。</p>
+<p>$Theorem 4.16$ 一个语言是可判定的，当且仅当它和它的补都是图灵可识别的。</p>
+<ol>
+<li><p>语言是可判定的$\to$补是图灵可识别的。</p>
+</li>
+<li><p>它和它的补是图灵可识别的$\to$语言是可判定的。</p>
+</li>
+</ol>
+<h2><span id="chapter-five-可归约性">Chapter Five 可归约性</span></h2><p>$Definition$ 如果A可归约到B，就可以用B的解来解A。说明解B的难度比解A更大。</p>
+<p>$Inference $ 当A可归约到B时，如果B是可判定的，则A是可判定的。如果A是不可判定的，则B是不可判定的。</p>
+<h3><span id="映射可归约性">映射可归约性</span></h3><h4><span id="可计算函数">可计算函数</span></h4><p>$Definition 5.12$ 如果存在一个判定器$M$，对于函数$f:\Sigma^\ast \to \Sigma^\ast$，使得在每一个输入$w$上$M$都接受，且只有$f(w)$留在带子上。</p>
+<h4><span id="映射可归约性">映射可归约性</span></h4><p>归约性的一种定义。</p>
+<p>$Definition 5.15$ 语言$A$是映射可归约到语言$B$的，如果存在可计算函数$f:\Sigma ^ \ast \to \Sigma ^\ast$使得对每个$w$:$w\in A \Longleftrightarrow w\in B$。记作$A \le_m B$。</p>
+<p>特别的，在用于证明非图灵可识别过程中，有一个典型手段。</p>
+<p>$Inference 5.23$ 如果$A\le_m B$，且$A$不是图灵可识别的，则$B$也不是图灵可识别的。</p>
+<p>而一个标志性的非图灵可识别的例子是$\bar{A_{TM}}$，而可知$A\le_m B \leftrightarrow \bar{A}\le_m \bar{B}$，所以为证明$B$非图灵可识别，可证$A\le_m \bar{B}$。</p>
+
       
     </div>
     <footer class="article-footer">
