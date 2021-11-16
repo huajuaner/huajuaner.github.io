@@ -90,6 +90,7 @@
       
         <h1><span id="theory-of-computation-review">Theory of Computation  ReView</span></h1><blockquote>
 <p>计算的要义就是在有限步内找到准确的解。</p>
+<p>读书就是在识词，了解定义，尤其是形式化的那些。</p>
 </blockquote>
 <!-- toc -->
 
@@ -151,6 +152,21 @@
 <li><a href="#%E6%98%A0%E5%B0%84%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7">映射可归约性</a><ul>
 <li><a href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0">可计算函数</a></li>
 <li><a href="#%E6%98%A0%E5%B0%84%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7-1">映射可归约性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-six-%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA%E7%9A%84%E9%AB%98%E7%BA%A7%E4%B8%93%E9%A2%98">Chapter Six 可计算性理论的高级专题</a><ul>
+<li><a href="#%E9%80%92%E5%BD%92%E5%8E%9F%E7%90%86">递归原理</a></li>
+</ul>
+</li>
+<li><a href="#chapter-seven-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7">Chapter Seven 时间复杂性</a><ul>
+<li><a href="#%E5%A4%8D%E6%9D%82%E6%80%A7%E7%9A%84%E5%BA%A6%E9%87%8F">复杂性的度量</a></li>
+<li><a href="#p%E7%B1%BB%E9%97%AE%E9%A2%98">P类问题</a></li>
+<li><a href="#np%E7%B1%BB%E9%97%AE%E9%A2%98">NP类问题</a></li>
+<li><a href="#np-complete">NP-Complete</a><ul>
+<li><a href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7">多项式时间可归约性</a></li>
+<li><a href="#%E5%BA%93%E5%85%8B-%E5%88%97%E6%96%87%E5%AE%9A%E7%90%86">库克-列文定理</a></li>
 </ul>
 </li>
 </ul>
@@ -288,6 +304,26 @@
 <p>特别的，在用于证明非图灵可识别过程中，有一个典型手段。</p>
 <p>$Inference 5.23$ 如果$A\le_m B$，且$A$不是图灵可识别的，则$B$也不是图灵可识别的。</p>
 <p>而一个标志性的非图灵可识别的例子是$\bar{A_{TM}}$，而可知$A\le_m B \leftrightarrow \bar{A}\le_m \bar{B}$，所以为证明$B$非图灵可识别，可证$A\le_m \bar{B}$。</p>
+<h2><span id="chapter-six-可计算性理论的高级专题">Chapter Six 可计算性理论的高级专题</span></h2><h3><span id="递归原理">递归原理</span></h3><h2><span id="chapter-seven-时间复杂性">Chapter Seven 时间复杂性</span></h2><h3><span id="复杂性的度量">复杂性的度量</span></h3><p>$Definition 7.2$ 设$f和g$是两个函数，$f，g:\mathrm{N\to R^+}$。称$f(n)=O(g(n))$，若存在正整数$c$和$n_0$，使得对所有$n\ge n_0$有：<br>$$<br>f(n)\le cg(n)<br>$$<br>当$f(n)=O(g(n))$时，称$g(n)为f(n)$的上界，或更准确的说，渐进上界。</p>
+<p>$Definition 7.7$ 令$t:\mathrm{N\to R^+}$是一个函数，定义时间复杂性类$TIME(t(n))$为由$O(t(n))$时间的图灵机判定的所有语言的集合。</p>
+<p>$Theorem 7.8$ 设$t(n)$是一个函数，$t(n)\ge n $，则每一个$t(n)$时间的多带图灵机都和某一个$O(t^2(n))$时间的单带图灵机等价，每一个$t(n)$时间的非确定性单带图灵机都与某一个$2^{O(t(n))}$时间的确定性单带图灵机等价。</p>
+<h3><span id="p类问题">P类问题</span></h3><p>$Definition 7.11$ P是确定型单带图灵机在多项式时间内可判定的语言集。换言之，$P=\bigcup_k(n^k)$。</p>
+<p>其重要性在于：</p>
+<ul>
+<li>对于所有与确定型单带图灵机多项式等价的计算模型来说，P是不变的。</li>
+<li>P大致对应于在计算机上实际可解的那一类问题。</li>
+</ul>
+<h3><span id="np类问题">NP类问题</span></h3><p>$Definition 7.15$ 语言A的验证机是一个算法V，这里 $A={w|对某个字符串c，V接受&lt;w,c&gt; }$，多项式时间验证机在$w$的长的的多项式时间内运行。若语言A有一个多项式时间验证机，则称他为多项式可验证的。</p>
+<p>$Definition 7.16$ NP是具有多项式时间验证机的语言类。</p>
+<h3><span id="np-complete">NP-Complete</span></h3><h4><span id="多项式时间可归约性">多项式时间可归约性</span></h4><p>$Definition 7.23$ 若存在多项式时间图灵机$M$，使得在任何输入$w$上，$M$停机时$f(w)$恰好在带子上，则称$f:\Sigma ^\ast \to \Sigma ^\ast$为多项式时间可计算函数。</p>
+<p>$Definition 7.24$ 语言A称为多项式时间可归约到B，记为$A\le_p B$，若存在多项式时间可计算函数$f:\Sigma ^\ast \to \Sigma ^\ast$，对于每个$w$都有$w\in A \Leftrightarrow f(w)\in B$，函数$f$称为$A$到$B$的多项式时间归约。 </p>
+<p>$ Definition 7.27$ 如果语言B满足下面两个条件，就称为NP完全的：</p>
+<ol>
+<li>$ B\in NP$</li>
+<li>$\forall A(A\in NP)\land(A \le_p B) $</li>
+</ol>
+<h4><span id="库克-列文定理">库克-列文定理</span></h4><p>$Theorem 7.30$ SAT是NP完全的。</p>
+<p>使用SAT可以模拟得到$A_{TM}$，其公式$\phi= \phi _{cell} \land \phi _{start} \land \phi _{move} \land \phi _{accept}$。</p>
 
       
     </div>
