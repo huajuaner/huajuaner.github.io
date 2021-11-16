@@ -77,7 +77,119 @@
 	
 		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body>
 	<script>
@@ -144,15 +256,6 @@ var _hmt = _hmt || [];
 			
 							<ul>
 								<li class="file">
-									<a href="/2021/10/21/fundamentals-of-Control-Theory/">
-										fundamentals-of-Control-Theory
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">
 										为什么难以建立完善的仿真环境
 									</a>
@@ -188,35 +291,61 @@ var _hmt = _hmt || [];
 </div>
 
 <div id="article-content">
-	<p><a target="_blank" rel="noopener" href="https://www.freertos.org/features.html">https://www.freertos.org/features.html</a></p>
+	<p>https://www.freertos.org/features.html</p>
 <p>[toc]</p>
-<h2><span id="tasks">tasks</span></h2><h3><span id="task-states">task states</span></h3><p><img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"></p>
-<h3><span id="task-priorities">task priorities</span></h3><p>The idle task has priority zero.</p>
-<p><img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"></p>
-<h3><span id="task-生命周期的api">task 生命周期的API</span></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Tasks are created by calling <span class="title">xTaskCreate</span><span class="params">()</span> <span class="keyword">or</span> <span class="title">xTaskCreateStatic</span><span class="params">()</span>, <span class="keyword">and</span> deleted by calling <span class="title">vTaskDelete</span><span class="params">()</span>.</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="task-之间的通讯">task 之间的通讯</span></h2><h3><span id="queues">queues</span></h3><ul>
+<h2><span id="tasks">tasks</span></h2>
+<h3><span id="task-states">task states</span></h3>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"><figcaption aria-hidden="true">image-20211016201918144</figcaption>
+</figure>
+<h3><span id="task-priorities">task priorities</span></h3>
+<p>The idle task has priority zero.</p>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"><figcaption aria-hidden="true">image-20211016203150052</figcaption>
+</figure>
+<h3><span id="task-生命周期的api">task 生命周期的API</span></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Tasks are created by calling xTaskCreate<span class="op">()</span> or xTaskCreateStatic<span class="op">(),</span> and deleted by calling vTaskDelete<span class="op">().</span></span></code></pre></div>
+<h2><span id="task-之间的通讯">task 之间的通讯</span></h2>
+<h3><span id="queues">queues</span></h3>
+<ul>
 <li>传值</li>
 <li>通过传递指针同样可以实现传指针<strong>（多个tasks 共享一个内存空间）</strong></li>
 <li>由内核负责queue的存储空间分配</li>
 <li>在中断中使用的api不同于task中</li>
 <li>对queue 的操作如果不合法，会导致当前的task blocked</li>
 </ul>
-<p><u><strong>Note that interrupts must NOT use API functions that do not end in “FromISR”.</strong></u></p>
-<h3><span id="binary-semaphores-vs-counting-semaphores-vs-mutexes">Binary Semaphores  VS Counting Semaphores VS  Mutexes</span></h3><p>counting semaphores 和 binary … 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
+<p><u><strong>Note that interrupts must NOT use API functions that do not end in "FromISR".</strong></u></p>
+<h3><span id="binary-semaphores-vs-counting-semaphores-vs-mutexes">Binary Semaphores VS Counting Semaphores VS Mutexes</span></h3>
+<p>counting semaphores 和 binary ... 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
 <p>Mutexes are binary semaphores that include a priority inheritance mechanism.</p>
-<h4><span id="what-is-the-inheritance-mechanism">what is the inheritance mechanism</span></h4><p><img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"></p>
+<h4><span id="what-is-the-inheritance-mechanism">what is the inheritance mechanism</span></h4>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"><figcaption aria-hidden="true">image-20211017201349607</figcaption>
+</figure>
 <p><u><strong>mutex should not be used in an interrupt!!</strong></u></p>
-<p><img src="/2021/10/16/FREERTOS/image-20211017201633431.png" alt="image-20211017201633431"></p>
-<p><img src="/2021/10/16/FREERTOS/image-20211017201942607.png" alt="image-20211017201942607"></p>
-<h2><span id="task-notification">task notification</span></h2><p><img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"></p>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017201633431.png" alt="image-20211017201633431"><figcaption aria-hidden="true">image-20211017201633431</figcaption>
+</figure>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017201942607.png" alt="image-20211017201942607"><figcaption aria-hidden="true">image-20211017201942607</figcaption>
+</figure>
+<h2><span id="task-notification">task notification</span></h2>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"><figcaption aria-hidden="true">image-20211017205010532</figcaption>
+</figure>
 <p>较上述几个信号量使用起来更轻量化，没有从文档中读出原因，还有待编程进一步体验。</p>
-<h2><span id="stream-amp-message-buffers">Stream &amp; Message Buffers</span></h2><p><img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"></p>
+<h2><span id="stream-amp-message-buffers">Stream &amp; Message Buffers</span></h2>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"><figcaption aria-hidden="true">image-20211017205937043</figcaption>
+</figure>
 <p>只能由一个task 读，一个task写。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">If there are to be multiple different writers then the application writer must place each call to a writing API <span class="title">function</span> <span class="params">(such as xStreamBufferSend())</span> inside a critical section <span class="keyword">and</span> use a send block time of 0.</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2021/10/16/FREERTOS/image-20211017210439565.png" alt="image-20211017210439565"></p>
-<p><img src="/2021/10/16/FREERTOS/image-20211017210536191.png" alt="image-20211017210536191"></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>If there are to be multiple different writers then the application writer must place each call to a writing API function <span class="op">(</span>such as xStreamBufferSend<span class="op">())</span> inside a critical section and use a send block time of <span class="fl">0.</span></span></code></pre></div>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017210439565.png" alt="image-20211017210439565"><figcaption aria-hidden="true">image-20211017210439565</figcaption>
+</figure>
+<figure>
+<img src="/2021/10/16/FREERTOS/image-20211017210536191.png" alt="image-20211017210536191"><figcaption aria-hidden="true">image-20211017210536191</figcaption>
+</figure>
 
 </div>
 

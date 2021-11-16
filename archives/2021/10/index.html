@@ -75,7 +75,119 @@
 	
 		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body>
 	<script>
@@ -142,15 +254,6 @@ var _hmt = _hmt || [];
 			
 							<ul>
 								<li class="file">
-									<a href="/2021/10/21/fundamentals-of-Control-Theory/">
-										fundamentals-of-Control-Theory
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">
 										为什么难以建立完善的仿真环境
 									</a>
@@ -167,33 +270,16 @@ var _hmt = _hmt || [];
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2021/10/21/fundamentals-of-Control-Theory/">
-				<h2 class="index-title">
-					fundamentals of Control Theory
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-10-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">
 				<h2 class="index-title">
 					为什么难以建立完善的仿真环境
 				</h2>
 				<div class="index-brief">
-					微型扑翼飞行器的原理微型扑翼飞行器的原理类同于蜂鸟以及昆虫，不同于其他飞行器。其原理需要在非定常流动的低雷诺数环境中分析。
+					微型扑翼飞行器的原理
+微型扑翼飞行器的原理类同于蜂鸟以及昆虫，不同于其他飞行器。其原理需要在非定常流动的低雷诺数环境中分析。
 理论上或是计算上，目前都存在难度。同时，使用有限元分析软件Ansys Fluent也只能计算得到极为简化的结果（不能上控制策略，翅膀须建模为刚性翼）。
 
-但是由于扑翼流场强烈的
+但是由于扑翼
 					...
 				</div>
 			</a>
@@ -213,10 +299,15 @@ var _hmt = _hmt || [];
 				<div class="index-brief">
 					https://www.freertos.org/features.html
 [toc]
-taskstask states
-task prioritiesThe idle task has priority zero.
+tasks
+task states
 
-task 生命周期的API1Tasks are created by call
+image-20211016201918144
+
+task priorities
+The idle task has priority zero.
+
+i
 					...
 				</div>
 			</a>
