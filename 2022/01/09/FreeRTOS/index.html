@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		FreeRTOS | 
+	 
+	ZZYhuajuan
+	</title>
+	
+	<!-- keywords,description -->
+	 
+		<meta name="description" content="Major in engineering..." />
+	
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "wujun234.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.4.14/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<header id="header">
+    <a id="title" href="/" class="logo">ZZYhuajuan</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li>
+	
+
+	
+
+		<li class="menu-item">
+			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
+				UidGenerator
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li>
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="file active">
+									<a href="/2022/01/09/FreeRTOS/">
+										FreeRTOS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/11/11/POC-REview/">
+										POC-REview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
+										STM32g431rbt6-随学随记
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
+										STMCUBEMX-配置指北
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/freertosAPI/">
+										freertosAPI
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/11/16/fundamentals-of-control-theory/">
+										fundamentals-of-control-theory
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">
+										为什么难以建立完善的仿真环境
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/12/12/%E8%B5%B0%E9%A9%AC%E8%A7%82%E8%8A%B1%E7%9C%8B%E6%8E%A7%E5%88%B6%E5%8F%91%E5%B1%95%E5%8F%B2/">
+										走马观花看控制发展史
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+	FreeRTOS
+</h1>
+<div class="article-meta">
+	
+	<span>zzy</span>
+	<span>2022-01-09 15:42:36</span>
+		<div id="article-categories">
+    
+		<span>Categories：</span>
+            
+    
+
+    
+		<span>Tags：</span>
+            
+    
+		</div>
+
+</div>
+
+<div id="article-content">
+	<h2><span id="preliminary">preliminary</span></h2>
+<blockquote>
+<p>之前已经开始过一版了，但限于种种原因，没有坚持学完，这次希望以项目驱动，demo驱动，减少引用来自网页tutorial 的图片，常需要使用的函数另做整理，只看只记录必要的信息。</p>
+<p>目前使用RTOS的主要动机是因为原本的代码结构太过丑陋，不便于调试及整理合并。</p>
+<p>对架构的问题：</p>
+<ul>
+<li>多个Task之间是内存保护的么？
+<ul>
+<li>内存保护是RTOS建立在MPU（Memory Protection Unit）基础之上的，为可选项，由IC提供硬件，RTOS提供软件Support</li>
+<li>特别的，我们所选用的STM32G431RBT6是Cortex-M4 附有MPU的</li>
+</ul></li>
+<li>processor存在内核态，用来进行系统中断。</li>
+<li>Task 的上下文包括栈（还有什么？</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>应该时刻注意RTOS是<u>实时</u>的<u>嵌入式</u>系统，其目的与一般的操作系统不同。</li>
+</ul>
+</blockquote>
+<h2><span id="demos">Demos</span></h2>
+<h3><span id="cortex_stm32f103_keil">CORTEX_STM32F103_Keil</span></h3>
+<p>共含有三个task：</p>
+<ul>
+<li>Fast Interrupt Test：使用定时器产生高频中断（20000Hz），用另一个定时器作为标准时间，统计中断定时器的抖动问题。</li>
+<li>LCD task：作为写LCD屏幕的抽象层。</li>
+<li>Check task：5s一次，更改LCD的显示内容。</li>
+</ul>
+<p>引出的问题：</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled>
+定时器的使用以及为什么另一个定时器可视为标准时间。</li>
+<li><input type="checkbox" disabled>
+5s一次，这个时间是基于哪个时钟。</li>
+<li><input type="checkbox" disabled checked>
+task 之间使用queue 传输信息。</li>
+<li><input type="checkbox" disabled checked>
+代码规范，部分函数前命名为v，部分函数前命名为x</li>
+</ul>
+<h2><span id="正文">正文</span></h2>
+<h3><span id="程序主体-task">程序主体 Task</span></h3>
+<blockquote>
+<p>Co-routine 主要是为了降低对RAM的要求，随着目前设备的发展，已经很少会用，如果进一步有需求，再说。</p>
+</blockquote>
+<p>一个RTOS系统可以看作由多个TASK构成，其中有一个负责分发时间片以及切换上下文的TASK，称为Scheduler。</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled>
+进一步研究task implementation</li>
+</ul>
+<p>Task state共有四种，分别为running, ready, blocked 以及suspended。其中挂起vTaskSuspend()可以挂起任意Task（当前Task或其他任意状态的Task）。当configUSE_TIME_SLICING未定义或者被定义为1时，才会同一优先级的多个Task时分复用。而Task scheduling 共面对三种情况：</p>
+<ul>
+<li>Scheduling algorithm for single-core:
+<ul>
+<li>"Fixed priority"</li>
+<li>"Preemptive" 抢占式，高优先级可以随时中断并抢占处理器时间。可以通过配置<u>configUSE_PREEMPTION</u>关闭。</li>
+<li>"Round-robin"</li>
+<li>"Time sliced" 可以通过配置<u>configUSE_TIME_SLICING</u>关闭。</li>
+<li>Tips：需要合理分配优先级，且高优先级的Task不能陷入loop，避免低优先级Task陷入starvation.</li>
+</ul></li>
+<li>Scheduling algorithm for asymmetric multicore(AMP): Each processor core runs its own instance of FreeRTOS.
+<ul>
+<li>通过使用 <u>stream or message buffer</u> as the inter-core communication primitive.</li>
+</ul></li>
+<li>Scheduling algorithm for symmetric multicore(SMP): There is only one instance of FreeRTOS.
+<ul>
+<li>同一时间可以运行多个Task。</li>
+</ul></li>
+</ul>
+<h4><span id="task-implementation">Task Implementation</span></h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> vATaskFunction<span class="op">(</span> <span class="dt">void</span> <span class="op">*</span>pvParameters <span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span><span class="op">(</span> <span class="op">;;</span> <span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>          <span class="co">/* Psudeo code showing a task waiting for an event </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">            with a block time. If the event occurs, process it.  </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">            If the timeout expires before the event occurs, then </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">            the system may be in an error state, so handle the</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">            error.  Here the pseudo code "WaitForEvent()" could </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">            replaced with xQueueReceive(), ulTaskNotifyTake(), </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">            xEventGroupWaitBits(), or any of the other FreeRTOS </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">            communication and synchronisation primitives. */</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span><span class="op">(</span> WaitForEvent<span class="op">(</span> EventObject<span class="op">,</span> TimeOut <span class="op">)</span> <span class="op">==</span> pdPASS <span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>          <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>              <span class="op">--</span> Handle event here<span class="op">.</span> <span class="op">--</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          <span class="op">{</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">--</span> Clear errors<span class="op">,</span> <span class="kw">or</span> take actions here<span class="op">.</span> <span class="op">--</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="co">/* If the task needs to be terminated, use vTaskDelete instead of return */</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      vTaskDelete<span class="op">(</span> NULL <span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">//PS: use event-driven instead of looping </span></span></code></pre></div>
+<h3><span id="intermediary-for-inter-task-communications-queue-semaphore-mutex">intermediary for inter-task communications: Queue, Semaphore, Mutex</span></h3>
+<h4><span id="queue">Queue</span></h4>
+<p>用于在task之间，以及task与interrupt之间传递消息。（Interrupt 与 Task 采用不同抽象）。</p>
+<ul>
+<li>传值</li>
+<li>The kernel is fully responsible for allocating the memory used.</li>
+<li>The implementation is naturally suited for use in a memory protected environment. A task that is restricted to a protected memory area can pass data to a task that is restricted to a different protected memory area because invoking the RTOS by calling the queue send function will raise the microcontroller privilege level. The queue storage area is only accessed by the RTOS (with full privileges). 为什么要做privilege？同一时间只有一个线程在工作，不会打乱读写（存疑，看是否为元操作）--&gt;如果需要全局变量是否也要做抽象（或者mutex对读写上锁）。</li>
+<li>在中断内需要调用不同的接口。(中断是routine类)</li>
+<li>如果进行当前不能进行的操作，当前Task 会进入Block状态。</li>
+</ul>
+<h4><span id="semaphore-vs-mutex">Semaphore Vs. Mutex</span></h4>
+<p><u>TIP: 'Task Notifications' can provide a light weight alternative to binary semaphores in many situations</u></p>
+<ul class="task-list">
+<li><input type="checkbox" disabled checked>
+Mutexes 更适合实现互斥资源访问，而 Binary Semaphores 更适合实现同步，为什么？</li>
+</ul>
+<p>因为Mutex 实现了优先级机制，并且<u>Mutex不可用于中断</u>，而semaphore 并没有。</p>
+<p><span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex" xmlns="http://www.w3.org/2000/svg" width="11.143ex" height="2.059ex" role="img" focusable="false" viewbox="0 -705 4925 910"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"/></g><g data-mml-node="mi" transform="translate(828,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"/></g><g data-mml-node="mi" transform="translate(1294,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"/></g><g data-mml-node="mi" transform="translate(1844,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(2189,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(2789,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(3134,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g><g data-mml-node="mi" transform="translate(3495,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(3840,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(4325,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></svg></mjx-container></span> Priority Inheritance: 当一个更高优先级的task申请mutex时，将目前正占有该mutex的task的优先级暂时升高到相同。以避免出现priority inversion.</p>
+<p><span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex" xmlns="http://www.w3.org/2000/svg" width="11.143ex" height="2.059ex" role="img" focusable="false" viewbox="0 -705 4925 910"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"/></g><g data-mml-node="mi" transform="translate(828,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"/></g><g data-mml-node="mi" transform="translate(1294,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"/></g><g data-mml-node="mi" transform="translate(1844,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(2189,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(2789,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(3134,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g><g data-mml-node="mi" transform="translate(3495,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(3840,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(4325,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></svg></mjx-container></span> Deferred Interrupt: The Peripheral interrupt will immediately send data to a queue and block, the post processing will occur when the processor is free. 简单说，这样可以保证各task按时正常进行。</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled>
+Counting Semaphores 是否可用于传感器计数，每次increment 1，decrement 多个且可变。最简单也可以用多个信号量代替实现。</li>
+</ul>
+<h3><span id="task-notification">Task Notification</span></h3>
+<p><u>TIP: 如果使用Stream and Message Buffers, the task notification at array index 0 is preserved.</u></p>
+<p>相较于前一章所提到的用于传输信息的实例，Task Notification 更快且更节省空间。</p>
+<h4><span id="代替binary-semaphore">代替Binary Semaphore</span></h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* This is an example of a transmit function in a generic</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">peripheral driver.  An RTOS task calls the transmit function,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">then waits in the Blocked state (so not using an CPU time)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">until it is notified that the transmission is complete.  The</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">transmission is performed by a DMA, and the DMA end interrupt</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">is used to notify the task. */</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">/* Stores the handle of the task that will be notified when the</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">transmission is complete. */</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="dt">TaskHandle_t</span> xTaskToNotify <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">/* The index within the target task's array of task notifications</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">to use. */</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">UBaseType_t</span> xArrayIndex <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* The peripheral driver's transmit function. */</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> StartTransmission<span class="op">(</span> <span class="dt">uint8_t</span> <span class="op">*</span>pcData<span class="op">,</span> <span class="dt">size_t</span> xDataLength <span class="op">)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* At this point xTaskToNotify should be NULL as no transmission</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">    is in progress.  A mutex can be used to guard access to the</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">    peripheral if necessary. */</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    configASSERT<span class="op">(</span> xTaskToNotify <span class="op">==</span> NULL <span class="op">);</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Store the handle of the calling task. */</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    xTaskToNotify <span class="op">=</span> xTaskGetCurrentTaskHandle<span class="op">();</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Start the transmission - an interrupt is generated when the</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">    transmission is complete. */</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    vStartTransmit<span class="op">(</span> pcData<span class="op">,</span> xDatalength <span class="op">);</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">/*-----------------------------------------------------------*/</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">/* The transmit end interrupt. */</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> vTransmitEndISR<span class="op">(</span> <span class="dt">void</span> <span class="op">)</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="dt">BaseType_t</span> xHigherPriorityTaskWoken <span class="op">=</span> pdFALSE<span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* At this point xTaskToNotify should not be NULL as</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co">    a transmission was in progress. */</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    configASSERT<span class="op">(</span> xTaskToNotify <span class="op">!=</span> NULL <span class="op">);</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Notify the task that the transmission is complete. */</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    vTaskNotifyGiveIndexedFromISR<span class="op">(</span> xTaskToNotify<span class="op">,</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                                   xArrayIndex<span class="op">,</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                                   <span class="op">&amp;</span>xHigherPriorityTaskWoken <span class="op">);</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">//不是信号量给过去之后这个就被抢占了？</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">//所以中断不会被抢占，可为什么要切换上下文</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* There are no transmissions in progress, so no tasks</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co">    to notify. */</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    xTaskToNotify <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* If xHigherPriorityTaskWoken is now set to pdTRUE then a</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">    context switch should be performed to ensure the interrupt</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co">    returns directly to the highest priority task.  The macro used</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co">    for this purpose is dependent on the port in use and may be</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">    called portEND_SWITCHING_ISR(). */</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 为什么要手动切换上下文？？</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    portYIELD_FROM_ISR<span class="op">(</span> xHigherPriorityTaskWoken <span class="op">);</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="co">/*-----------------------------------------------------------*/</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co">/* The task that initiates the transmission, then enters the</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="co">Blocked state (so not consuming any CPU time) to wait for it</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co">to complete. */</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> vAFunctionCalledFromATask<span class="op">(</span> <span class="dt">uint8_t</span> ucDataToTransmit<span class="op">,</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                                <span class="dt">size_t</span> xDataLength <span class="op">)</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="dt">uint32_t</span> ulNotificationValue<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">TickType_t</span> xMaxBlockTime <span class="op">=</span> pdMS_TO_TICKS<span class="op">(</span> <span class="dv">200</span> <span class="op">);</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Start the transmission by calling the function shown above. */</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    StartTransmission<span class="op">(</span> ucDataToTransmit<span class="op">,</span> xDataLength <span class="op">);</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Wait to be notified that the transmission is complete.  Note</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="co">    the first parameter is pdTRUE, which has the effect of clearing</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="co">    the task's notification value back to 0, making the notification</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="co">    value act like a binary (rather than a counting) semaphore.  */</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    ulNotificationValue <span class="op">=</span> ulTaskNotifyTakeIndexed<span class="op">(</span> xArrayIndex<span class="op">,</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                                                   pdTRUE<span class="op">,</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>                                                   xMaxBlockTime <span class="op">);</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span> ulNotificationValue <span class="op">==</span> <span class="dv">1</span> <span class="op">)</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        <span class="co">/* The transmission ended as expected. */</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>        <span class="co">/* The call to ulTaskNotifyTake() timed out. */</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3><span id="stream-amp-message-buffers">Stream &amp; Message Buffers</span></h3>
+<p>正常只支持单个task读，单个task写，如果需要多个，自行上锁，这两个功能并不是默认开启的。</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled>
+<strong>FreeRTOS/Demo/Common/Minimal/StreamBufferInterrupt.c</strong></li>
+</ul>
+<h3><span id="software-timers">Software Timers</span></h3>
+<blockquote>
+<p>Efficiency Consideration：</p>
+<ul>
+<li>does not execute timer callback functions from an interrupt context</li>
+<li>does not consume <strong>any</strong> processing time unless a timer has actually expired</li>
+<li>does not add any processing overhead to the tick interrupt</li>
+<li>does not walk any link list structures while interrupts are disabled</li>
+</ul>
+</blockquote>
+<p>这个功能也是可选的，将Timer 抽象为Timer Service Task，功能主要经由API移交给该task。</p>
+<h3><span id="memory-allocating">memory allocating</span></h3>
+<ul>
+<li>For Static Memory: <u>configSUPPORT_STATIC_ALLOCATION</u> needs to be set to 1, and the available function name is like <u>xTaskCreateStatic()</u></li>
+<li>For Dynamic Memory: <u>configSUPPORT_DYNAMIC_ALLOCATION</u> needs to be set to 1 or left undefined, the available function name is like <u>xTaskCreate()</u></li>
+</ul>
+<p>考虑到各式的嵌入式系统有不同的需求，将heap management schemes的实现方式交由用户决定，同时提供了五种可选方案：</p>
+<ul>
+<li>heap_1 - the very simplest, does not permit memory to be freed.</li>
+<li>heap_2 - permits memory to be freed, but does not coalescence adjacent free blocks.</li>
+<li>heap_3 - simply wraps the standard malloc() and free() for thread safety.</li>
+<li>heap_4 - coalescences adjacent free blocks to avoid fragmentation. Includes absolute address placement option.</li>
+<li>heap_5 - as per heap_4, with the ability to span the heap across multiple non-adjacent memory areas.</li>
+</ul>
+<p>同样的，应对栈溢出的解决方案也留待用户自行决定。</p>
+<h2><span id="secondary-docs">Secondary Docs</span></h2>
+<h3><span id="idle-tasks">Idle Tasks</span></h3>
+<p>系统自动创建，为全场最低优先级，用于Garbage Collection。为了保证系统时刻有可以运行的Task，Idle Task千不能万不能陷入Block状态，同样，其他任何Task 都不能设置做Loop。</p>
+<p><u>Tips: 使用vTaskDelete()</u> 结束Task，会自动被Idle Task 清理。</p>
+<h3><span id="hook-functions">Hook Functions</span></h3>
+<p>挂钩函数，可以由某些Task的特定生命进程唤醒，例如：</p>
+<ul>
+<li>Idle Hook Function</li>
+</ul>
+<p>大概是若Idle Task 都没有Garbage to collect时，会触发Idle Hook Function，例如可将系统进入低功耗模式</p>
+<ul>
+<li>Tick Hook Function</li>
+<li>Malloc Failed Hook Function</li>
+<li>Daemon Task Startup Hook</li>
+</ul>
+<h3><span id="mpu-support">MPU Support</span></h3>
+<p>FreeRTOS 共提供两种方式使得应用更安全：</p>
+<ul>
+<li>区分Task 分别运行在privileged模式以及unprivileged模式</li>
+<li>限制Unprivileged Task 对例如RAM, exectuable, peripherals 的访问</li>
+</ul>
+<p>综上，FreeRTOS的解决方式更类似于权限管理，而非细粒度的每个Task存在其私有空间。</p>
+<h3><span id="thread-local-storage-pointers-tls">Thread Local Storage Pointers (TLS)</span></h3>
+<ul class="task-list">
+<li><input type="checkbox" disabled checked>
+作用类似于static 函数，尚不明确具体用途，需要测试static 是否可用</li>
+</ul>
+<p>可以获取其他Task 的某个index 的TLS。</p>
+<h3><span id="blocking-on-multiple-rtos-objects">Blocking on Multiple RTOS objects</span></h3>
+<p>Enable tasks to be blocked on multiple queues and/or semaphores.</p>
+<h3><span id="deferred-interrupt-handling">Deferred Interrupt Handling</span></h3>
+<p>为减少中断所占用的时长，将数据后处理的工作放在一些优先级较低（较ISR而言）的Task中进行。</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled>
+可以用来处理IMU数据，处理变向及stopper问题。</li>
+</ul>
+<ol type="1">
+<li><p>Centralised Deferred Interrupt Handling：</p></li>
+<li><p>Application Controlled Deferred Interrupt Handling</p></li>
+</ol>
+<blockquote>
+<p>https://www.freertos.org/RTOS_Task_Notification_As_Counting_Semaphore.html</p>
+<p>第二个实例是否可以用于监测stopper？</p>
+</blockquote>
+<p>本质区别是，第一类是每次interrupt后由daemon task 新建一个function来处理数据，第二类则是存在一个Task，一直在等待这个信号量。</p>
+<h3><span id="task-implementation">Task implementation</span></h3>
+<p>Real Time Operating System 和普通操作系统对多线程的需求不同，需要保证某些Task 在某时刻之前完成，引入了优先级的概念，而时分复用只会出现在相同优先级的task之间。</p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2022/01/12/freertosAPI/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  freertosAPI
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
+                STM32g431rbt6 随学随记
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			el: '#vcomments',
+			appId: '',
+			appKey: '',
+			placeholder: '请输入评论',
+			path: window.location.pathname,
+			avatar: 'retro',
+			highlight: false,
+      recordIP: true,
+      enableQQ: true,
+			requiredFields: ['nick','mail']
+		})
+	
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">zzy</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

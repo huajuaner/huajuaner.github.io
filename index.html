@@ -236,8 +236,8 @@ var _hmt = _hmt || [];
 			
 							<ul>
 								<li class="file">
-									<a href="/2021/10/16/FREERTOS/">
-										FREERTOS
+									<a href="/2022/01/09/FreeRTOS/">
+										FreeRTOS
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -256,6 +256,24 @@ var _hmt = _hmt || [];
 								<li class="file">
 									<a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
 										STM32g431rbt6-随学随记
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
+										STMCUBEMX-配置指北
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/freertosAPI/">
+										freertosAPI
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -297,6 +315,78 @@ var _hmt = _hmt || [];
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
+				<h2 class="index-title">
+					STMCUBEMX 配置指北
+				</h2>
+				<div class="index-brief">
+					
+希望每做一步都有因可依，有据可循。
+
+revision history
+第三版电路:
+
+对每相电机驱动芯片，每个霍尔传感器对应了一个中断。
+使用ADC测量
+使用SPI与ICM-42688-P 进行通讯
+
+GPIO 配置
+ITM 配置
+Analog 配置
+middle wa
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-01-12</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2022/01/12/freertosAPI/">
+				<h2 class="index-title">
+					freertosAPI
+				</h2>
+				<div class="index-brief">
+					
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-01-12</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2022/01/09/FreeRTOS/">
+				<h2 class="index-title">
+					FreeRTOS
+				</h2>
+				<div class="index-brief">
+					preliminary
+
+之前已经开始过一版了，但限于种种原因，没有坚持学完，这次希望以项目驱动，demo驱动，减少引用来自网页tutorial 的图片，常需要使用的函数另做整理，只看只记录必要的信息。
+目前使用RTOS的主要动机是因为原本的代码结构太过丑陋，不便于调试及整理合并。
+对架构的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-01-09</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
 				<h2 class="index-title">
 					STM32g431rbt6 随学随记
@@ -333,9 +423,9 @@ image-20211221210455779
 https://mp.weixin.qq.com/s/D2SPfq-4ay4kvWYajGnXOw
 https://mp.weixin.qq.com/s/tEBpf7kuORt8SP6rqqC95g
 
-Image
+历史发展
 
-最初的控制问题关注怎样感知，以飞球式调速器
+最初的控制问题关注怎样感知，以飞球式调速器为
 					...
 				</div>
 			</a>
@@ -412,34 +502,6 @@ Q: 为什么大多数计算模型是受限的
 			</a>
                 <div class="article-meta">
 				    <span>2021-10-18</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2021/10/16/FREERTOS/">
-				<h2 class="index-title">
-					FREERTOS-Developer Docs
-				</h2>
-				<div class="index-brief">
-					https://www.freertos.org/features.html
-[toc]
-tasks
-task states
-
-image-20211016201918144
-
-task priorities
-The idle task has priority zero.
-
-i
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-10-16</span>
                     
                             
                     

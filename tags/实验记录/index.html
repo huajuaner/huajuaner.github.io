@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		FREERTOS-Developer Docs | 
 	 
 	ZZYhuajuan
 	</title>
@@ -237,9 +235,9 @@ var _hmt = _hmt || [];
 
 			
 							<ul>
-								<li class="file active">
-									<a href="/2021/10/16/FREERTOS/">
-										FREERTOS
+								<li class="file">
+									<a href="/2022/01/09/FreeRTOS/">
+										FreeRTOS
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -258,6 +256,24 @@ var _hmt = _hmt || [];
 								<li class="file">
 									<a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
 										STM32g431rbt6-随学随记
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
+										STMCUBEMX-配置指北
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/01/12/freertosAPI/">
+										freertosAPI
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -296,124 +312,45 @@ var _hmt = _hmt || [];
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
-	FREERTOS-Developer Docs
-</h1>
-<div class="article-meta">
+		<div id="index">
 	
-	<span>zzy</span>
-	<span>2021-10-16 20:06:42</span>
-		<div id="article-categories">
-    
-		<span>Categories：</span>
-            
-    
+		<div class="index-li">
+			<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
+				<h2 class="index-title">
+					STMCUBEMX 配置指北
+				</h2>
+				<div class="index-brief">
+					
+希望每做一步都有因可依，有据可循。
 
-    
-		<span>Tags：</span>
-            
-    
-		</div>
+revision history
+第三版电路:
 
+对每相电机驱动芯片，每个霍尔传感器对应了一个中断。
+使用ADC测量
+使用SPI与ICM-42688-P 进行通讯
+
+GPIO 配置
+ITM 配置
+Analog 配置
+middle wa
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-01-12</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
+	</div>
 </div>
 
-<div id="article-content">
-	<p>https://www.freertos.org/features.html</p>
-<p>[toc]</p>
-<h2><span id="tasks">tasks</span></h2>
-<h3><span id="task-states">task states</span></h3>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211016201918144.png" alt="image-20211016201918144"><figcaption aria-hidden="true">image-20211016201918144</figcaption>
-</figure>
-<h3><span id="task-priorities">task priorities</span></h3>
-<p>The idle task has priority zero.</p>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211016203150052.png" alt="image-20211016203150052"><figcaption aria-hidden="true">image-20211016203150052</figcaption>
-</figure>
-<h3><span id="task-生命周期的api">task 生命周期的API</span></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Tasks are created by calling xTaskCreate<span class="op">()</span> or xTaskCreateStatic<span class="op">(),</span> and deleted by calling vTaskDelete<span class="op">().</span></span></code></pre></div>
-<h2><span id="task-之间的通讯">task 之间的通讯</span></h2>
-<h3><span id="queues">queues</span></h3>
-<ul>
-<li>传值</li>
-<li>通过传递指针同样可以实现传指针<strong>（多个tasks 共享一个内存空间）</strong></li>
-<li>由内核负责queue的存储空间分配</li>
-<li>在中断中使用的api不同于task中</li>
-<li>对queue 的操作如果不合法，会导致当前的task blocked</li>
-</ul>
-<p><u><strong>Note that interrupts must NOT use API functions that do not end in "FromISR".</strong></u></p>
-<h3><span id="binary-semaphores-vs-counting-semaphores-vs-mutexes">Binary Semaphores VS Counting Semaphores VS Mutexes</span></h3>
-<p>counting semaphores 和 binary ... 基本一致，但在电机转动过程中，适宜使用counting semaphores</p>
-<p>Mutexes are binary semaphores that include a priority inheritance mechanism.</p>
-<h4><span id="what-is-the-inheritance-mechanism">what is the inheritance mechanism</span></h4>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017201349607.png" alt="image-20211017201349607"><figcaption aria-hidden="true">image-20211017201349607</figcaption>
-</figure>
-<p><u><strong>mutex should not be used in an interrupt!!</strong></u></p>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017201633431.png" alt="image-20211017201633431"><figcaption aria-hidden="true">image-20211017201633431</figcaption>
-</figure>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017201942607.png" alt="image-20211017201942607"><figcaption aria-hidden="true">image-20211017201942607</figcaption>
-</figure>
-<h2><span id="task-notification">task notification</span></h2>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017205010532.png" alt="image-20211017205010532"><figcaption aria-hidden="true">image-20211017205010532</figcaption>
-</figure>
-<p>较上述几个信号量使用起来更轻量化，没有从文档中读出原因，还有待编程进一步体验。</p>
-<h2><span id="stream-amp-message-buffers">Stream &amp; Message Buffers</span></h2>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017205937043.png" alt="image-20211017205937043"><figcaption aria-hidden="true">image-20211017205937043</figcaption>
-</figure>
-<p>只能由一个task 读，一个task写。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>If there are to be multiple different writers then the application writer must place each call to a writing API function <span class="op">(</span>such as xStreamBufferSend<span class="op">())</span> inside a critical section and use a send block time of <span class="fl">0.</span></span></code></pre></div>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017210439565.png" alt="image-20211017210439565"><figcaption aria-hidden="true">image-20211017210439565</figcaption>
-</figure>
-<figure>
-<img src="/2021/10/16/FREERTOS/image-20211017210536191.png" alt="image-20211017210536191"><figcaption aria-hidden="true">image-20211017210536191</figcaption>
-</figure>
-
-</div>
-
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2021/10/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9A%BE%E4%BB%A5%E5%BB%BA%E7%AB%8B%E5%AE%8C%E5%96%84%E7%9A%84%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  为什么难以建立完善的仿真环境
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-        </div>
-    </div>
-
-
-
-	<div id="vcomments"></div>
-
-
-<script>
-	
-		// 评论
-		new Valine({
-			el: '#vcomments',
-			appId: '',
-			appKey: '',
-			placeholder: '请输入评论',
-			path: window.location.pathname,
-			avatar: 'retro',
-			highlight: false,
-      recordIP: true,
-      enableQQ: true,
-			requiredFields: ['nick','mail']
-		})
-	
-	
-</script>
 	</div>
 	<div id="footer">
 	<p>

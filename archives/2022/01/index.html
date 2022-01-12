@@ -315,24 +315,30 @@ var _hmt = _hmt || [];
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2021/12/21/STM32g431rbt6-%E9%9A%8F%E5%AD%A6%E9%9A%8F%E8%AE%B0/">
+			<a href="/2022/01/12/STMCUBEMX-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/">
 				<h2 class="index-title">
-					STM32g431rbt6 随学随记
+					STMCUBEMX 配置指北
 				</h2>
 				<div class="index-brief">
-					STM32G431RBT6
-选择该款芯片主要是因为其内置了运算放大器。
-DAC
-Question: 多久可以改变一次数值，响应时间有多少
+					
+希望每做一步都有因可依，有据可循。
 
-image-20211221210455779
+revision history
+第三版电路:
 
-操作首先要经过buffer DAC_DORx，什么是hardware trigger 以及哪里确
+对每相电机驱动芯片，每个霍尔传感器对应了一个中断。
+使用ADC测量
+使用SPI与ICM-42688-P 进行通讯
+
+GPIO 配置
+ITM 配置
+Analog 配置
+middle wa
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2021-12-21</span>
+				    <span>2022-01-12</span>
                     
                             
                     
@@ -340,25 +346,40 @@ image-20211221210455779
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2021/12/12/%E8%B5%B0%E9%A9%AC%E8%A7%82%E8%8A%B1%E7%9C%8B%E6%8E%A7%E5%88%B6%E5%8F%91%E5%B1%95%E5%8F%B2/">
+			<a href="/2022/01/12/freertosAPI/">
 				<h2 class="index-title">
-					走马观花看控制发展史
+					freertosAPI
 				</h2>
 				<div class="index-brief">
 					
-先见森林，再见树木。
 
-https://mp.weixin.qq.com/s/D2SPfq-4ay4kvWYajGnXOw
-https://mp.weixin.qq.com/s/tEBpf7kuORt8SP6rqqC95g
-
-历史发展
-
-最初的控制问题关注怎样感知，以飞球式调速器为
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2021-12-12</span>
+				    <span>2022-01-12</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2022/01/09/FreeRTOS/">
+				<h2 class="index-title">
+					FreeRTOS
+				</h2>
+				<div class="index-brief">
+					preliminary
+
+之前已经开始过一版了，但限于种种原因，没有坚持学完，这次希望以项目驱动，demo驱动，减少引用来自网页tutorial 的图片，常需要使用的函数另做整理，只看只记录必要的信息。
+目前使用RTOS的主要动机是因为原本的代码结构太过丑陋，不便于调试及整理合并。
+对架构的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-01-09</span>
                     
                             
                     
